@@ -25,8 +25,8 @@
 
     <div class="navbar">
 
-        <i class='bx bx-search'></i>
-        <input type="text" placeholder="Search..." id="search">
+        {{-- <i class='bx bx-search'></i> --}}
+        <input type="text" placeholder="Search transaction, driver, commuter, van" id="search" autocomplete="off">
 
     </div>
     

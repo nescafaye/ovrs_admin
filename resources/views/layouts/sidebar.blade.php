@@ -17,7 +17,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Scripts -->
-    @vite(['resources/sass/sidebar.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 'resources/js/app.js'])
 </head>
 <body>
 
@@ -36,49 +36,49 @@
              <span class="tooltip">Search</span>
           </li> --}}
           <li>
-            <a href="{{ url('/home') }}" class="active">
+            <a href="{{ route('home') }}" class="{{ (request()->is('/')) ? 'active' : '' }}">
               <i class='bx bxs-dashboard'></i>
               <span class="links_name">Dashboard</span>
             </a>
              <span class="tooltip">Dashboard</span>
           </li>
           <li>
-           <a href="{{ url('/driver') }}">
+           <a href="{{ route('driver') }}" class="{{ (request()->is('driver')) ? 'active' : '' }}">
              <span class="iconify" data-icon="ri:steering-2-fill"></span>
              <span class="links_name">Driver</span>
            </a>
            <span class="tooltip">Driver</span>
          </li>
          <li>
-           <a href="{{ url('/commuter') }}">
+           <a href="{{ route('commuter') }}" class="{{ (request()->is('commuter')) ? 'active' : '' }}">
             <i class='bx bxs-user'></i>
              <span class="links_name">Commuter</span>
            </a>
            <span class="tooltip">Commuter</span>
          </li>
          <li>
-           <a href="#">
+           <a href="{{ route('van') }}" class="{{ (request()->is('van')) ? 'active' : '' }}">
              <span class="iconify" data-icon="fa6-solid:van-shuttle"></span>
              <span class="links_name">Van</span>
            </a>
            <span class="tooltip">Van</span>
          </li>
          <li>
-           <a href="#">
+           <a href="{{ route('transaction') }}" class="{{ (request()->is('transaction')) ? 'active' : '' }}">
              <span class="iconify" data-icon="fontisto:ticket"></span>
              <span class="links_name">Transaction</span>
            </a>
            <span class="tooltip">Transaction</span>
          </li>
          <li>
-           <a href="#">
+           <a href="{{ route('route') }}" class="{{ (request()->is('route')) ? 'active' : '' }}">
              <span class="iconify" data-icon="ci:location"></span>
              <span class="links_name">Route</span>
            </a>
            <span class="tooltip">Route</span>
          </li>
          <li>
-           <a href="#">
+           <a href="">
              <span class="iconify" data-icon="ci:settings-filled"></span>
              <span class="links_name">Settings</span>
            </a>
@@ -93,13 +93,9 @@
          </li> --}}
          <li class="profile">
              <div class="profile-details">
-               <!--<img src="profile.jpg" alt="profileImg">-->
-               {{-- <div class="name_job">
-                 <div class="name">Prem Shahi</div>
-                 <div class="job">Web designer</div>
-               </div> --}}
+               
              </div>
-             <i class='bx bx-log-out' id="log_out" ></i>
+             <a href="{{ route('logout') }}"><i class='bx bx-log-out' id="log_out" ></i></a>
          </li>
         </ul>
       </div>

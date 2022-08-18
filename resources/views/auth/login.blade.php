@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +69,68 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+<div class="container-fluid">
+
+    <div class="form-container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+        <!-- <img src="../assets/vango-logo.png" width="90" height="60" class="logo-head rounded mx-auto d-block" alt="VanGo logo"> -->
+
+        <form class="p-5 form-float" action="{{ route('login') }}" method="POST" style="width: 30rem">
+
+            <h3 class="head-text text-center pb-5 display-7">Login</h3>
+
+            <?php 
+                if(!empty($login_err)){
+                    echo '<div class="alert alert-danger">' . $login_err . '</div>';
+                }        
+            ?>
+
+            <div class="form-floating mb-3">
+                <input type="text" name="admin_un" class="form-control" id="floatingInput" placeholder="name@example.com" class="is-invalid" value="{{ old('admin_un') }}" required autocomplete="username"> 
+                <span class="invalid-feedback"></span>
+                <label for="floatingInput" class="form-label">{{ __('Enter Username') }}</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password" id="password-field" placeholder="Password" class="password <?php echo (!empty($pass_err)) ? 'is-invalid' : ''; ?>" required>
+                <span class="invalid-feedback"></span>
+                <i class="uil uil-eye-slash toggle-password" toggle="#password-field"></i>
+                <label for="floatingPassword" class="form-label">{{ __('Enter Password') }}</label>
+            </div>
+
+            @if (Route::has('password.request'))
+                <p class="text-right forgot-pass">
+                    <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                </p>
+            @endif
+
+            <div class="d-grid button">
+                <input type="submit" name="btnLogin" value="{{ __('Login') }}">
+                <!-- <button type="submit" name="btnLogin" class="btn">Login</button> -->
+            </div>
+        </form>
+    </div>
+
 </div>
+
+<!-- Show password function -->
+
+<script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("uil-eye uil-eye-slash");
+
+        var input = $($(this).attr("toggle"));
+
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+
+    });
+</script>
+
 @endsection

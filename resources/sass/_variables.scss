@@ -1,8 +1,15 @@
+
+@import url('http://fonts.cdnfonts.com/css/circular-std');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+                
+
 // Body
-$body-bg: #f8fafc;
+$body-bg: #FBFBFB;
 
 // Typography
-$font-family-sans-serif: 'Poppins', sans-serif;
+$primary-font: 'Poppins', sans-serif;
+$title-font: 'Circular Std', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 

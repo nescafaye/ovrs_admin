@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\Admin as ModelsAdmin;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -50,9 +51,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'admin_fname' => ['required', 'string', 'max:255'],
+            'admin_mail' => ['required', 'string', 'email', 'max:255', 'unique:admin'],
+            'admin_un' => ['required', 'string', 'max:150'],
+            'password' => ['required', 'string', Password::min(8)
+                                                ->letters()
+                                                ->mixedCase()
+                                                ->numbers()
+                                                ->symbols()
+                                                ->uncompromised()],
         ]);
     }
 
@@ -64,9 +71,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        return ModelsAdmin::create([
+            'admin_fname' => $data['admin_fname'],
+            'admin_mail' => $data['admin_mail'],
+            'admin_un' => $data['admin_un'],
             'password' => Hash::make($data['password']),
         ]);
     }

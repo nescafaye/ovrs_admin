@@ -1,0 +1,101 @@
+@import 'app.scss';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+
+:root {
+
+    //theme
+
+    --teal-reg: #008080;
+    --teal-med: #60B0B0;
+    --teal-dark: #004C4C;
+    --teal-light: #d7ebebe2;
+    --warning: #FF7F52;
+
+    //gray
+
+    --graye: #263238;
+    --med-graye: rgb(138, 146, 158);
+    --light-graye: rgb(200, 200, 200);
+
+    // font-family
+
+    --poppins: 'Poppins', sans-serif;
+    --circularstd: 'Circular Std', sans-serif; 
+
+} 
+
+* {
+    font-family: var(--poppins)
+}
+
+.container-fluid {
+    background-color: var(--teal-light);
+    min-height: 100vh;
+}
+
+.form-float img.logo-head {
+    position: relative;
+    top: -100px;
+    
+}
+
+.form-float {
+    background: white;
+    border-radius: 12px;
+
+}
+
+.head-text {
+    font-family: var(--circularstd);
+    font-size: 24px;
+}
+
+i.uil {
+   position: absolute;
+   right: 15px;
+   top: 15px;
+   font-size: 22px;
+   cursor: pointer;
+   background-color: #fff;
+   padding: 0 3px;
+   color: var(--light-graye);
+}
+
+.forgot-pass {
+    margin-top: 10px;
+    font-size: 15px;
+
+    a {
+       color: var(--med-graye);
+
+       &:hover {
+        color: #008080;
+        text-decoration: none;
+       }
+    }
+} // .forgot-pass end
+
+.button {
+    margin-top: 35px;
+
+    input {
+        border: none;
+        color: #fff;
+        font-size: 17px;
+        padding: 12px 0;
+        font-weight: 500;
+        letter-spacing: 1px;
+        border-radius: 6px;
+        background-color: var(--teal-med);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: var(--teal-dark);
+        }
+    }
+
+} // .button end
