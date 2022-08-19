@@ -20,7 +20,7 @@
 <p><b>Database:</b>database\migrations\2022_08_09_140620_create_drivers_table.php</p>
 
 
-<h4>Login</h4>
+<h3>Login</h3>
 <p><b>Model:</b></p>
 <ul>
     <li>Admin.php</li>
@@ -29,7 +29,7 @@
 <p><b>View:</b>login.blade.php</p>
 <p><b>Controller:</b>LoginController.php</p>
 
-<h4>Register</h4>
+<h3>Register</h3>
 <p><b>Model:</b></p>
 <ul>
     <li>Admin.php</li>
