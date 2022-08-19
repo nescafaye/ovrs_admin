@@ -11,14 +11,14 @@
 </ul>
 <p><b>Database:</b> database\migrations\2022_08_18_084545_create_admins_table.php</p>
 
-<br><br>
+
 
 <h3>Driver</h3>
 <p><b>Model:</b> Driver.php</p>
 <p><b>View:</b>driver.blade.php</p>
 <p><b>Controller:</b>DriverController.php</p>
 <p><b>Database:</b>database\migrations\2022_08_09_140620_create_drivers_table.php</p>
-<br><br>
+
 
 <h4>Login</h4>
 <p><b>Model:</b></p>
@@ -28,7 +28,6 @@
 </ul>
 <p><b>View:</b>login.blade.php</p>
 <p><b>Controller:</b>LoginController.php</p>
-<br><br>
 
 <h4>Register</h4>
 <p><b>Model:</b></p>
