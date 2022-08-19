@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Admin</title>
 
     <!-- Fonts and Icons -->
@@ -17,7 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Scripts -->
-    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 'resources/sass/driver.scss', 'resources/js/app.js'])
 </head>
 <body>
 
@@ -36,7 +37,7 @@
              <span class="tooltip">Search</span>
           </li> --}}
           <li>
-            <a href="{{ route('home') }}" class="{{ (request()->is('/')) ? 'active' : '' }}">
+            <a href="{{ route('home') }}" class="{{ (request()->is('home')) ? 'active' : '' }}">
               <i class='bx bxs-dashboard'></i>
               <span class="links_name">Dashboard</span>
             </a>

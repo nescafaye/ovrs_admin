@@ -128,6 +128,36 @@
     
     position: absolute;
     right: 0;
-    top: 0;
+    top: 95px;
     width: 70%;
+    height: 90vh;
+    padding-right: 70px;
+    // background: #bbb;
+
+    .driver-head {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .text-details {
+            font-family: $title-font;
+        }
+
+        .driver-action {
+            display: inline;
+
+            .bx {
+                font-size: 24px;
+                color: #080800;
+                cursor: pointer;
+
+                &:hover {
+                    color: #6C757D;
+                }
+            }
+        }
+
+    }
 }
+

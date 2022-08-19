@@ -66,14 +66,15 @@ i.uil {
 
 .forgot-pass {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 14px;
+    text-align: right;
 
     a {
        color: var(--med-graye);
+       text-decoration: none;
 
        &:hover {
         color: #008080;
-        text-decoration: none;
        }
     }
 } // .forgot-pass end

@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Admin</title>
 
     <!-- Fonts and Iconss -->
@@ -25,15 +26,15 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/login.scss', 'resources/sass/driver.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/login.scss', 'resources/js/app.js'])
 
 </head>
 <body>
     <div id="app">
-{{-- 
+
         <main class="">
-            @yield('content')
-        </main> --}}
+            @yield('auth')
+        </main>
 
     </div>
 </body>

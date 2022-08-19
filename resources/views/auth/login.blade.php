@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('auth')
 {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -78,14 +78,22 @@
         <!-- <img src="../assets/vango-logo.png" width="90" height="60" class="logo-head rounded mx-auto d-block" alt="VanGo logo"> -->
 
         <form class="p-5 form-float" action="{{ route('login') }}" method="POST" style="width: 30rem">
+            @csrf
 
             <h3 class="head-text text-center pb-5 display-7">Login</h3>
 
-            <?php 
-                if(!empty($login_err)){
-                    echo '<div class="alert alert-danger">' . $login_err . '</div>';
-                }        
-            ?>
+            @error('password')
+
+                <span>{{ $message }}</span>
+                
+            @enderror
+
+            <input type="radio" name="user_role" id="admin">
+            <label for="admin">Admin</label>
+            <input type="radio" name="user_role" id="driver">
+            <label for="driver">Driver</label>
+
+            <br><br>
 
             <div class="form-floating mb-3">
                 <input type="text" name="admin_un" class="form-control" id="floatingInput" placeholder="name@example.com" class="is-invalid" value="{{ old('admin_un') }}" required autocomplete="username"> 

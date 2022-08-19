@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 @extends('layouts.sidebar')
 
 
@@ -194,9 +194,21 @@
 
     <div class="driver-details">
 
-        {{-- @include('layouts.profile') --}}
+        {{-- view details  --}}
 
-        <h2>Driver Details</h2>
+        {{-- @include('layouts.profile') --}}
+        <div class="driver-head">
+            <h2 class="text-details">Driver Details</h2>
+            
+            <div class="driver-action">
+
+                <i class='bx bxs-edit'></i>
+                <i class='bx bx-plus-circle' ></i>
+
+            </div>
+
+        </div>
+
     </div>
 
 @endsection
