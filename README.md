@@ -15,7 +15,7 @@
 
 <h3>Driver</h3>
 <p><b>Model:</b> Driver.php</p>
-<p><b>View:</b>driver.blade.php</p>
+<p><b>View:</b>driverhome.blade.php</p>
 <p><b>Controller:</b>DriverController.php</p>
 <p><b>Database:</b>database\migrations\2022_08_09_140620_create_drivers_table.php</p>
 
