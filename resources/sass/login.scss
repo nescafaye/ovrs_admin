@@ -34,6 +34,10 @@
 .container-fluid {
     background-color: var(--teal-light);
     min-height: 100vh;
+    background-image: url(../../public/assets/bottom-bg.svg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .form-float img.logo-head {
@@ -59,7 +63,6 @@ i.uil {
    top: 15px;
    font-size: 22px;
    cursor: pointer;
-   background-color: #fff;
    padding: 0 3px;
    color: var(--light-graye);
 }
@@ -100,3 +103,43 @@ i.uil {
     }
 
 } // .button end
+
+.user-role {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .role {
+        width: 100%;
+        height: 50px;
+
+
+        .btn {
+            display: block;
+            padding: 13px;
+            text-transform: capitalize;
+            font-size: 15px;
+            // color: var(--teal-med);
+
+            &:hover {
+                // color: #fff;
+                // background: var(--teal-med);
+            }
+
+            
+
+            .iconify {
+                margin-right: 4px;
+            }
+            
+        }
+
+        &.user-admin {
+            margin-right: 8px;
+
+            }
+
+        
+    }
+}

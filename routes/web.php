@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DriverHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('admin.home')->middleware('is_admin');
+
 // Auth::routes(['register' => false]);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
 Route::get('/driver', [App\Http\Controllers\DriverController::class, 'index'])->name('driver');
 
@@ -34,7 +40,11 @@ Route::get('/route', [App\Http\Controllers\RouteController::class, 'index'])->na
 
 // Route::get('/setting')->name('setting');
 
+Route::get('/home/driver', [DriverHomeController::class, 'index'])->name('driverhome');
+
 //logout
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('');
  });
+
+ 

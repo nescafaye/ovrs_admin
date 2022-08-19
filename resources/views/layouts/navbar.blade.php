@@ -9,7 +9,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>Admin</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

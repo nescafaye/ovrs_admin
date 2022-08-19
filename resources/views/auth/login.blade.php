@@ -88,12 +88,23 @@
                 
             @enderror
 
-            <input type="radio" name="user_role" id="admin">
-            <label for="admin">Admin</label>
-            <input type="radio" name="user_role" id="driver">
-            <label for="driver">Driver</label>
+            <div class="user-role">
 
-            <br><br>
+                <div class="role user-admin">
+
+                    <input type="radio" class="btn-check" name="is_admin" id="admin" autocomplete="off" value="{{ old('is_admin') }}">
+                    <label class="btn btn-outline-success" for="admin"><span class="iconify" data-icon="eos-icons:admin" data-width="22" data-height="22"></span>Admin</label>
+
+                </div>
+
+                <div class="role user-driver">
+                    
+                    <input type="radio" class="btn-check" name="is_admin" id="driver" autocomplete="off" value="{{ old('is_admin') }}">
+                    <label class="btn btn-outline-success" for="driver"><span class="iconify" data-icon="mdi:steering" data-width="22" data-height="22"></span>Driver</label>
+
+                </div>
+
+            </div>
 
             <div class="form-floating mb-3">
                 <input type="text" name="admin_un" class="form-control" id="floatingInput" placeholder="name@example.com" class="is-invalid" value="{{ old('admin_un') }}" required autocomplete="username"> 

@@ -46,6 +46,32 @@ class LoginController extends Controller
         return 'admin_un';
     }
 
+    public function login(Request $request)
+    {   
+        $input = $request->all();
+   
+        $this->validate($request, [
+            'admin_un' => 'required',
+            'password' => 'required',
+        ]);
+   
+        if(auth()->attempt(array('admin_un' => $input['admin_un'], 'password' => $input['password'])))
+        {
+            if (auth()->user()->is_admin == 1) {
+                return redirect()->route('home');
+            }else{
+                return redirect()->route('driverhome');
+            }
+        }
+        
+        else {
+            return redirect()->route('login')
+                ->with('error','Email-Address And Password Are Wrong.');
+        }
+          
+    }
+
+
     public function logout(Request $request)
     {
         $this->guard()->logout();

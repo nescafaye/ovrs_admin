@@ -8,7 +8,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <title>Admin</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts and Iconss -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,7 @@
 
 	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 
     <!-- UI -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />

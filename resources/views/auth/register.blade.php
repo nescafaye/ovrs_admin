@@ -11,6 +11,8 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        
+
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -72,6 +74,32 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('User role') }}</label>
+
+                            <div class="col-md-6">
+
+                                <div class="user-role">
+
+                                    <div class="role user-admin">
+                    
+                                        <input type="radio" class="btn-check" name="is_admin" id="admin" autocomplete="off" value="1">
+                                        <label class="btn btn-outline-success" for="admin"><span class="iconify" data-icon="eos-icons:admin" data-width="22" data-height="22"></span>Admin</label>
+                    
+                                    </div>
+                    
+                                    <div class="role user-driver">
+                                        
+                                        <input type="radio" class="btn-check" name="is_admin" id="driver" autocomplete="off" value="0">
+                                        <label class="btn btn-outline-success" for="driver"><span class="iconify" data-icon="mdi:steering" data-width="22" data-height="22"></span>Driver</label>
+                    
+                                    </div>
+                    
+                                </div>
+
                             </div>
                         </div>
 

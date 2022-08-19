@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('admin_fname');
             $table->string('admin_mail')->unique();
             $table->string('admin_un')->unique();
-            $table->string('password');    
+            $table->string('password'); 
+            $table->boolean('is_admin')->nullable();   
             $table->timestamps();        
 
         });

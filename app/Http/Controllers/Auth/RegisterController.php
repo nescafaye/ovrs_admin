@@ -75,6 +75,7 @@ class RegisterController extends Controller
                                                 ->numbers()
                                                 ->symbols()
                                                 ->uncompromised()],
+            'is_admin' => ['required', 'boolean']
         ]);
     }
 
@@ -91,6 +92,7 @@ class RegisterController extends Controller
             'admin_mail' => $data['admin_mail'],
             'admin_un' => $data['admin_un'],
             'password' => Hash::make($data['password']),
+            'is_admin' => $data['is_admin'],
         ]);
     }
 }
