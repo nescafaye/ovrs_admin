@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts and Icons -->
@@ -18,23 +18,25 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Scripts -->
-    @vite(['resources/sass/navbar.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/profile.scss', 'resources/js/app.js'])
 </head>
 <body>
 
-    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <div class="profile-container">
 
-    <div class="navbar">
+        <div class="sticky-profile">
 
-        {{-- <i class='bx bx-search'></i> --}}
-        <input type="text" placeholder="Search transaction, driver, commuter, van" id="search" autocomplete="off">
-
-        <div class="add-btns">
-            <button class="btn-add"><a href="" class="add add-driver">Add driver</a></button>
-            <button class="btn-add"><a href="" class="add add-van">Add van</a></button>
-        </div>
-
-    </div>
+            <span class="iconify notif" data-icon="ic:baseline-notifications-none" data-width="26" data-height="26"></span>
     
+            <div class="profile">
+                <span class="name">Maria Luz</span>
+                <img class= "prof-pic" src="{{ asset('assets/prof-pic.png') }}" alt="">
+            </div>
+    
+        </div>
+        
+    </div>
+
+
 </body>
 </html>

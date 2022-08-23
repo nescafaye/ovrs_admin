@@ -4,6 +4,12 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DriverController;
+use App\Http\Controllers\CommuterController;
+use App\Http\Controllers\VanController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\RouteController;
+
 use App\Http\Controllers\DriverHomeController;
 
 /*
@@ -28,15 +34,19 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
-Route::get('/driver', [App\Http\Controllers\DriverController::class, 'index'])->name('driver');
+Route::get('/driver', [DriverController::class, 'index'])->name('driver');
 
-Route::get('/commuter', [App\Http\Controllers\CommuterController::class, 'index'])->name('commuter');
+Route::get('/commuter', [CommuterController::class, 'index'])->name('commuter');
 
-Route::get('/van', [App\Http\Controllers\VanController::class, 'index'])->name('van');
+Route::get('/commuter/{comm_id?}', [CommuterController::class, 'show'])->name('commuter.show');
 
-Route::get('/transaction', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction');
+// Route::resource('commuter', CommuterController::class);
 
-Route::get('/route', [App\Http\Controllers\RouteController::class, 'index'])->name('route');
+Route::get('/van', [VanController::class, 'index'])->name('van');
+
+Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
+
+Route::get('/route', [RouteController::class, 'index'])->name('route');
 
 // Route::get('/setting')->name('setting');
 

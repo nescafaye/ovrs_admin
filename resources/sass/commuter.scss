@@ -1,0 +1,119 @@
+@import 'variables';
+
+.content-details.comm {
+    height: 150vh;
+}
+
+.list-table {
+    margin-top: 50px;
+
+    .sort {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .sort-dropdown {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 30px;
+
+            label {
+                margin-right: 6px;
+                font-size: 14px;
+            }
+
+            select {
+                height: 38px;
+                width: 130px;
+                border-radius: 10px;
+                font-size: 14px;
+                margin-right: 12px;
+            }
+
+            .sort-by {
+                select {
+                    width: 150px;
+
+                    &:hover {
+                        border-radius: 10px;
+                    }
+                }
+            }
+        }
+
+        .add-btn {
+            
+            .btn {
+                height: 45px;
+                width: 145px;
+                background-color: #B2D8D8;
+                border: none;
+                border-radius: 10px;
+                font-size: 15px;
+
+                &:hover {
+                    background: #008080;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                .iconify-inline {
+                    font-size: 16px;
+                    margin-left: 5px;
+                }
+            }
+        }
+
+    }
+
+    .table {
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0px 10px;
+
+            tr {
+                border-radius: 12px;
+                height: 45px;
+
+                &:nth-child(even) {
+                    background-color: #F8F8F8;
+                }
+
+                &:hover:not(.table-head) {
+                    background: #ececec;
+                    cursor: pointer;
+                }
+            }
+
+            td, th {
+                text-align: left;
+                padding: 5px;
+                font-size: 14px;
+              }
+
+            th {
+                font-size: 15px;
+                font-weight: 500;
+            }
+
+            td {
+                padding-left: 10px;
+
+                &:first-child {
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                }
+            }
+
+        }
+    }
+}

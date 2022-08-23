@@ -13,12 +13,15 @@
 .navbar {
     left: 0;
     top: 0;
-    width: 100%;
+    width: 83%;
     height: 78px;
     background: #F8F8F8;
     padding: 15px 50px;
     z-index: 99;
     transition: all 0.5s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .navbar input {
@@ -44,6 +47,28 @@
     font-size: 22px;
     color: #FFF;
     
+}
+
+.add-btns {
+
+    .btn-add {
+        
+        border: none; 
+        height: 45px;
+        background-color: transparent;
+
+        .add {
+            font-size: 15px;
+            font-weight: 400;
+            background: #B2D8D8;
+            text-decoration: none;
+            color: #004C4C;
+            padding: 10px 25px;
+            border-radius: 10px;
+
+        }
+    }
+
 }
 
 // .navbar .bx-search:hover {

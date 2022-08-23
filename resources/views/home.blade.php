@@ -153,17 +153,10 @@
 
         </div>
 
+        @include('layouts.profile')
+
         <div class="schedule">
-            <div class="sticky-profile">
-
-                <span class="iconify notif" data-icon="ic:baseline-notifications-none" data-width="26" data-height="26"></span>
-
-                <div class="profile">
-                    <span class="name">Maria Luz</span>
-                    <img class= "prof-pic" src="{{ asset('assets/prof-pic.png') }}" alt="">
-                </div>
-
-            </div>
+            
                 
             <div class="sched-container">
                 

@@ -18,7 +18,10 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Scripts -->
-    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 'resources/sass/driver.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 
+    'resources/sass/driver.scss', 
+    'resources/sass/commuter.scss', 
+    'resources/js/app.js'])
 </head>
 <body>
 
