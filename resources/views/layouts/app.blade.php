@@ -10,6 +10,8 @@
     
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="shortcut icon" href="{{ asset('assets/vango-logo.svg') }}" type="image/x-icon">
+
     <!-- Fonts and Iconss -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +31,9 @@
     <!-- Scripts -->
     @vite(['resources/sass/login.scss', 'resources/js/app.js'])
 
+    @livewire('livewire-ui-modal')
+    @livewireStyles
+
 </head>
 <body>
     <div id="app">
@@ -38,5 +43,7 @@
         </main>
 
     </div>
+
+    @livewireScripts
 </body>
 </html>

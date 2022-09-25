@@ -1,0 +1,19 @@
+@import 'variables';
+// @import 'commuter.scss';
+
+.route {
+
+    .content-details {
+        padding-bottom: 5rem;
+    }
+
+    .label-txt {
+        margin-left: 20px;
+     }
+
+     .route-details {
+        display: grid;
+        grid-template-columns: repeat(2, 250px);
+        grid-row-gap: 20px;
+     }
+}

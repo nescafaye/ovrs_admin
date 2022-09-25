@@ -3,6 +3,8 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+$enable-validation-icons: false;
+
 
 :root {
 
@@ -50,6 +52,14 @@
     background: white;
     border-radius: 12px;
 
+    .form-floating {
+
+        input {
+            margin: 0 !important;
+            margin-bottom: 4px !important;
+        }
+    }
+
 }
 
 .head-text {
@@ -96,6 +106,7 @@ i.uil {
         background-color: var(--teal-med);
         cursor: pointer;
         transition: all 0.3s ease;
+        
 
         &:hover {
             background-color: var(--teal-dark);
@@ -126,8 +137,6 @@ i.uil {
                 // color: #fff;
                 // background: var(--teal-med);
             }
-
-            
 
             .iconify {
                 margin-right: 4px;

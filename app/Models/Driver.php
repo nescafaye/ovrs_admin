@@ -15,12 +15,22 @@ class Driver extends Model
      *
      * @var array<int, string>
      */
+
+    protected $table = 'drivers';
+    protected $primaryKey = 'dvr_id';
+
+
     protected $fillable = [
-        'dvr_fname',
-        'dvr_mail',
-        'dvr_un',
-        'dvr_pw',
-        'gcashInfo'
+        'fname',
+        'lname',
+        'email',
+        'username',
+        'password',
+        'phone',
+        'gender',
+        'profilePic',
+        'accNumber',
+        'accName',
     ];
 
      /**
@@ -29,12 +39,12 @@ class Driver extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'dvr_pw',
+        'password',
         'remember_token',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\User'); 
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User'); 
+    // }
 }

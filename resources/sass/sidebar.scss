@@ -75,6 +75,7 @@
     padding: 15px;
     text-align: center;
     line-height: 60px;
+    
 }
 
 .sidebar .nav-list {
@@ -125,7 +126,7 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.4s ease;
-    // background: #f0f0f0;
+    background: #66b2b239;
 
     &.active {
         background: #66B2B2;
@@ -153,9 +154,8 @@
     opacity: 0;
     pointer-events: none;
     transition: 0.4s;
+    
 }
-
-
 
 .sidebar.open li a .links_name {
     opacity: 1;
@@ -167,6 +167,7 @@
 .sidebar li a:hover .iconify {
     transition: all 0.5s ease;
     color: #004C4C;
+
 }
 
 .sidebar li i,
@@ -186,6 +187,7 @@
     padding: 10px 14px;
     transition: all 0.5s ease;
     overflow: hidden;
+    // background: #000;
 }
 
 .sidebar.open li.profile {
@@ -237,7 +239,6 @@
 
 .home-section {
     position: relative;
-    background: white;
     min-height: 100vh;
     top: 0;
     left: 78px;
@@ -251,13 +252,7 @@
     width: calc(100% - 250px);
 }
 
-.home-section .text {
-    display: inline-block;
-    color: #11101d;
-    font-size: 25px;
-    font-weight: 500;
-    margin: 18px
-}
+
 
 @media (max-width: 420px) {
     .sidebar li .tooltip {

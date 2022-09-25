@@ -36,9 +36,15 @@ return [
     */
 
     'guards' => [
+
         'web' => [
             'driver' => 'session',
             'provider' => 'admin',
+        ],
+
+        'driver' => [
+            'driver' => 'session',
+            'provider' => 'driver',
         ],
     ],
 
@@ -64,6 +70,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
             'table' => 'admin',
+        ],
+
+        'driver' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Driver::class,
+            'table' => 'drivers',
         ],
 
         // 'users' => [
@@ -94,6 +106,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        
 
     ],
 

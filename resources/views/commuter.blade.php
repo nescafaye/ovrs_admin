@@ -36,29 +36,29 @@
         <div class="list">
 
             <div class="results">
-                <small>Showing results 1-50 of 250</small>
+                <small>Showing results 1-{{ $count }} of {{ $count }}</small>
             </div>
 
             {{--  --}}
 
            @foreach ($commuters as $commuter)
-               
-            <a href="{{ route('commuter', ['comm_id' => $commuter->comm_id]) }}" class="list-info {{ (request()->is('commuter')) ? 'active' : '' }}">
-
-                <input type="checkbox" name="" id="select-list">
-
-                <label for="select-list">
-                    
-                    <img src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
                 
-                    <div class="label-txt">
-                        <h4>{{$commuter->comm_fname}} {{$commuter->comm_lname}}</h4>
-                        <p>{{$commuter->comm_mail}}</p>
-                    </div>
+                <a href="{{ route('commuter', ['id' => $commuter->comm_id]) }}" class="list-info @if ( $commuter->comm_id == $c->comm_id ) active @endif">
 
-                </label>
+                    <input type="checkbox" name="" id="{{ $commuter->comm_id }}">
 
-            </a>
+                    <label for="{{ $commuter->comm_id }}">
+                        
+                        <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
+                    
+                        <div class="label-txt">
+                            <h4>{{$commuter->fname}} {{$commuter->lname}}</h4>
+                            <p>{{$commuter->email}}</p>
+                        </div>
+
+                    </label>
+
+                </a>
 
             @endforeach
 
@@ -93,7 +93,7 @@
             <div class="action">
 
                 <i class='bx bxs-edit'></i>
-                <i class='bx bx-plus-circle' ></i>
+                {{-- <i class='bx bx-plus-circle' ></i> --}}
 
             </div>
 
@@ -116,7 +116,7 @@
 
                 {{-- {{ route('commuter', ['commuter_id' => $commuter->commuter_id]) }} --}}
 
-                <h3 class="name-username">{{ $commuter->comm_fname }} {{ $commuter->comm_lname }} •  <span class="username">{{ $commuter->comm_un }}</span></h3>
+                <h3 class="name-username">{{ $c->fname }} {{ $c->lname }} •  <span class="username">{{ $c->username }}</span></h3>
 
             </div>
 
@@ -134,18 +134,18 @@
                     <div class="driver-van-detail">
 
                         <p class="driver-lbl">Phone Number</p>
-                        <small class="driver-txt">{{ $commuter->comm_phone }}</small>
+                        <small class="driver-txt">{{ $c->phone }}</small>
                         <p class="driver-lbl">Email</p>
-                        <small class="driver-txt">{{ $commuter->comm_mail }}</small>
-                        <p class="driver-lbl">Birthdate</p>
-                        <small class="driver-txt">{{ $commuter->birthdate }}</small>
+                        <small class="driver-txt">{{ $c->email }}</small>
+                        {{-- <p class="driver-lbl">Birthdate</p>
+                        <small class="driver-txt">{{ $c->birthdate }}</small> --}}
 
                     </div>
 
                     <div class="driver-van-detail">
 
                         <p class="driver-lbl">Gender</p>
-                        <small class="driver-txt">{{ $commuter->gender }}</small>
+                        <small class="driver-txt">{{ $c->gender }}</small>
 
                     </div>
 
@@ -159,9 +159,9 @@
                 
                 <div class="driver-gcash-detail">
                     <p class="driver-lbl">Account Name</p>
-                    <small class="driver-txt">Kathleen Jean Vierness</small>
+                    <small class="driver-txt">{{ $c->accName }}</small>
                     <p class="driver-lbl">Account Number</p>
-                    <small class="driver-txt">099710090522</small>
+                    <small class="driver-txt">{{ $c->accNumber }}</small>
                 </div>
 
             </div>

@@ -10,7 +10,11 @@
 
         <div class="dashboard">
 
-            <h2 class="welcome">Welcome, Admin</h2>
+            @foreach ($admin as $ad)
+
+                <h2 class="welcome">Welcome, <span style="color: #088; font-weight: 600;">{{ $ad->fname }} {{ $ad->lname }}!</span></h2>
+                
+            @endforeach
 
             <div class="performance">
                 <div class="stats reserves">

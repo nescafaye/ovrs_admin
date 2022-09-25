@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'admin_un';
+        return 'username';
     }
 
     public function login(Request $request)
@@ -51,22 +51,24 @@ class LoginController extends Controller
         $input = $request->all();
    
         $this->validate($request, [
-            'admin_un' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ]);
    
-        if(auth()->attempt(array('admin_un' => $input['admin_un'], 'password' => $input['password'])))
+        if(auth()->attempt(array('username' => $input['username'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_admin == 1) {
                 return redirect()->route('home');
-            }else{
+            }
+            
+            else {
                 return redirect()->route('driverhome');
             }
         }
         
         else {
             return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+                ->with('error','Incorrect username or password.');
         }
           
     }
@@ -86,7 +88,7 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('/login');
     }
 
 }

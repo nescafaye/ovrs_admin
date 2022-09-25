@@ -14,15 +14,26 @@ return new class extends Migration
     public function up()
     {
         Schema::create('drivers', function (Blueprint $table) {
-            $table->id('dvr_id');
-            $table->string('dvr_fname');
-            $table->string('dvr_mail')->unique();
-            $table->string('dvr_un')->unique();
+            $table->id('dvr_id')->index();
+            $table->string('fname');
+            $table->string('lname');
+            $table->string('email')->unique();
+            $table->string('username')->unique();
             $table->string('password');
-            $table->string('gcashInfo');
+            $table->string('phone', '12')->unique()->nullable();
+            $table->enum('gender', ['Female', 'Male', 'Others'])->nullable();
+            $table->binary('profilePic')->nullable();
+            $table->string('accNumber', '12')->nullable();
+            $table->string('accName')->nullable();
+            $table->timestamps();
             
+            // $table->foreign('assignedVehicle')
+            // ->references('plateNo')
+            // ->on('vehicles')
+            // ->onDelete('cascade');            
 
         });
+        
     }
 
     /**

@@ -9,8 +9,10 @@ use App\Http\Controllers\CommuterController;
 use App\Http\Controllers\VanController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SettingController;
 
 use App\Http\Controllers\DriverHomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,13 @@ use App\Http\Controllers\DriverHomeController;
 */
 
 Route::get('/', function () {
+    return view('auth/login');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
 
 // Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('admin.home')->middleware('is_admin');
 
@@ -34,19 +41,25 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
-Route::get('/driver', [DriverController::class, 'index'])->name('driver');
+Route::get('/driver/{dvr_id?}', [DriverController::class, 'index'])->name('driver');
 
-Route::get('/commuter', [CommuterController::class, 'index'])->name('commuter');
+Route::get('/create/driver', [DriverController::class, 'create'])->name('driver.create');
 
-Route::get('/commuter/{comm_id?}', [CommuterController::class, 'show'])->name('commuter.show');
+Route::post('/store/driver', [DriverController::class, 'store'])->name('driver.store');
 
-// Route::resource('commuter', CommuterController::class);
+// Route::delete('', [DriverController::class, 'destroy'])->name('driver.delete');
+
+Route::get('/commuter/{comm_id?}', [CommuterController::class, 'index'])->name('commuter');
+
+// Route::get('/commuter/{comm_id?}', [CommuterController::class, 'show'])->name('commuter.show');
 
 Route::get('/van', [VanController::class, 'index'])->name('van');
 
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
 
 Route::get('/route', [RouteController::class, 'index'])->name('route');
+
+Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 
 // Route::get('/setting')->name('setting');
 

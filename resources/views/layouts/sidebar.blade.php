@@ -11,19 +11,37 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="shortcut icon" href="{{ asset('assets/vango-logo.svg') }}" type="image/x-icon">
+
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
+    <!-- Alpine v2 -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <!-- Alpine v3 -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Scripts -->
     @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 
     'resources/sass/driver.scss', 
     'resources/sass/commuter.scss', 
+    'resources/sass/van.scss', 
+    'resources/sass/transaction.scss', 
+    'resources/sass/route.scss',
+    'resources/sass/settings.scss', 
     'resources/js/app.js'])
+
+    @livewire('livewire-ui-modal')
+    @livewireStyles
+
 </head>
 <body>
+
+  
 
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 
@@ -47,14 +65,14 @@
              <span class="tooltip">Dashboard</span>
           </li>
           <li>
-           <a href="{{ route('driver') }}" class="{{ (request()->is('driver')) ? 'active' : '' }}">
+           <a href="{{ url('driver/?id=1') }}" class="{{ (request()->is('driver')) ? 'active' : '' }}">
              <span class="iconify" data-icon="ri:steering-2-fill"></span>
              <span class="links_name">Driver</span>
            </a>
            <span class="tooltip">Driver</span>
          </li>
          <li>
-           <a href="{{ route('commuter') }}" class="{{ (request()->is('commuter')) ? 'active' : '' }}">
+           <a href="{{ url('commuter/?id=1') }}" class="{{ (request()->is('commuter')) ? 'active' : '' }}">
             <i class='bx bxs-user'></i>
              <span class="links_name">Commuter</span>
            </a>
@@ -67,6 +85,7 @@
            </a>
            <span class="tooltip">Van</span>
          </li>
+         
          <li>
            <a href="{{ route('transaction') }}" class="{{ (request()->is('transaction')) ? 'active' : '' }}">
              <span class="iconify" data-icon="fontisto:ticket"></span>
@@ -75,19 +94,22 @@
            <span class="tooltip">Transaction</span>
          </li>
          <li>
-           <a href="{{ route('route') }}" class="{{ (request()->is('route')) ? 'active' : '' }}">
-             <span class="iconify" data-icon="ci:location"></span>
+           <a href="{{ route('route') }}" class=" routes {{ (request()->is('route')) ? 'active' : '' }}">
+             <span class="iconify loc" data-icon="ci:location"></span>
              <span class="links_name">Route</span>
            </a>
            <span class="tooltip">Route</span>
          </li>
+         
          <li>
-           <a href="">
+           <a href="{{ route('settings') }}" class="{{ (request()->is('settings')) ? 'active' : '' }}">
              <span class="iconify" data-icon="ci:settings-filled"></span>
              <span class="links_name">Settings</span>
            </a>
            <span class="tooltip">Settings</span>
          </li>
+         
+        
          {{-- <li>
            <a href="#">
              <i class='bx bx-cog' ></i>
@@ -113,17 +135,16 @@
       <script>
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
-      let searchBtn = document.querySelector(".bx-search");
     
       closeBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("open");
         menuBtnChange();//calling the function(optional)
       });
     
-      searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-        sidebar.classList.toggle("open");
-        menuBtnChange(); //calling the function(optional)
-      });
+      // searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+      //   sidebar.classList.toggle("open");
+      //   menuBtnChange(); //calling the function(optional)
+      // });
     
       // following are the code to change sidebar button(optional)
       function menuBtnChange() {
@@ -134,6 +155,8 @@
        }
       }
       </script>
+    
+    @livewireScripts
     
 </body>
 </html>

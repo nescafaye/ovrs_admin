@@ -66,15 +66,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'admin_fname' => ['required', 'string', 'max:255'],
-            'admin_mail' => ['required', 'string', 'email', 'max:255', 'unique:admin'],
-            'admin_un' => ['required', 'string', 'max:150'],
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admin'],
+            'username' => ['required', 'string', 'max:150'],
             'password' => ['required', 'string', Password::min(8)
                                                 ->letters()
                                                 ->mixedCase()
                                                 ->numbers()
                                                 ->symbols()
                                                 ->uncompromised()],
+
             'is_admin' => ['required', 'boolean']
         ]);
     }
@@ -88,9 +90,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return ModelsAdmin::create([
-            'admin_fname' => $data['admin_fname'],
-            'admin_mail' => $data['admin_mail'],
-            'admin_un' => $data['admin_un'],
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
+            'email' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'is_admin' => $data['is_admin'],
         ]);

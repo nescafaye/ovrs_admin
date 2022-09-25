@@ -7,7 +7,6 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Illuminate\Foundation\Auth\User as Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Notifications\Notifiable;
@@ -26,14 +25,16 @@ class Commuter extends Authenticatable
     protected $primaryKey = 'comm_id';
 
     protected $fillable = [
-        'comm_fname',
-        'comm_lname',
-        'comm_un',
+        'fname',
+        'lname',
+        'email',
+        'username',
         'password',
-        'comm_mail',
-        'comm_phone',
-        'birthdate',
+        'phone',
         'gender',
+        'profilePic',
+        'accNumber',
+        'accName',
     ];
 
     protected $hidden = [

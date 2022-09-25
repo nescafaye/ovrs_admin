@@ -9,12 +9,21 @@ class VanController extends Controller
 {
     //
 
-    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $placeholder = 'Search Van';
+        $placeholder = 'Van';
         // $vans = Van::all();
         // return view('driver', compact('drivers'));
-        return view('van',compact('placeholder'));
+        return view('van.index',compact('placeholder'));
     }
 }
