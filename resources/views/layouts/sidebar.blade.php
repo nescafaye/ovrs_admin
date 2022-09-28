@@ -18,32 +18,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.0/dist/iconify-icon.min.js"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 
-    <!-- Alpine v2 -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
-    <!-- Alpine v3 -->
+    <!-- Livewire reqs -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/sidebar.scss', 'resources/sass/home.scss', 
+    @vite([
+    'resources/sass/sidebar.scss', 
+    'resources/sass/home.scss', 
     'resources/sass/driver.scss', 
     'resources/sass/commuter.scss', 
     'resources/sass/van.scss', 
     'resources/sass/transaction.scss', 
     'resources/sass/route.scss',
     'resources/sass/settings.scss', 
-    'resources/js/app.js'])
+    'resources/js/app.js'
+    ])
 
     @livewire('livewire-ui-modal')
     @livewireStyles
 
 </head>
 <body>
-
-  
-
-    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
 
     <div class="sidebar">
         <div class="logo-details">

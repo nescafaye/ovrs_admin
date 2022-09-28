@@ -253,6 +253,41 @@
 }
 
 
+/*========== FLASH MESSAGE ==========*/
+
+.flash-message {
+    margin-bottom: 12px;
+  
+      .success-msg {
+        background: var(--message-bg-color);
+        color: var(--login-color);
+      }
+  
+      .error-msg {
+        background: var(--error-msg);
+        color: var(--error-txt);
+      }
+  
+      .msg {
+        font-size: 14.5px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+  
+        .iconify-inline {
+          margin-bottom: -1.5px;
+          margin-right: 2px;
+        }
+  
+        .dismiss {
+          cursor: pointer;
+        }
+  
+      }
+  }
 
 @media (max-width: 420px) {
     .sidebar li .tooltip {

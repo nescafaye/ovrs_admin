@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class FormValidate extends Component
+class LoginValidate extends Component
 {
 
     public $username;

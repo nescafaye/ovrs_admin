@@ -1,6 +1,6 @@
 @import 'variables';
 
-// Bootstrap
+// //Bootstrap
 // @import 'bootstrap/scss/bootstrap';
 
 .pagination {
@@ -90,7 +90,7 @@
             font-family: $title-font;
         }
 
-        .iconify {
+        iconify-icon {
             font-size: 21px;
         }
     }
@@ -219,6 +219,8 @@
 
         .text-details {
             font-family: $title-font;
+            font-size: 1.5em;
+            font-weight: 500;
         }
 
         .action {
@@ -296,9 +298,9 @@
                 }
 
                 .driver-identity {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;
+                    display: grid;
+                    grid-template-columns: 1fr 2fr;
+                    grid-gap: 0 10px;
                     max-width: 550px;
                     min-width: 485px;
                     width: auto;
@@ -307,10 +309,14 @@
                     border-radius: 10px;
                     background-color: #F3F3F3;
 
-                    .driver-id {
+                    .driver-id, .driver-contact {
+                    
                         position: relative;
-                        padding-right: 20px;
-                        justify-self: self-start;
+                    }
+
+                    .driver-id {
+                        justify-self: flex-start;
+                        width: 85%;
                     }
 
                     .driver-id::after {
@@ -320,15 +326,16 @@
                         right: 0;
                         top: 0;
                         border-radius: 15px;
-                        width: 1.5px;
+                        width: 1.8px;
                         height: 100%;
                         background-color: #e0e0e0;
                     }
 
-                    .iconify-inline,
-                    .iconify {
+                    iconify-icon {
                         margin: 0 5px;
+                        margin-bottom: -1px;
                         color: #008080;
+                        
                     }
                 }
             }
@@ -377,6 +384,8 @@
 }
 
 
+
+
 /*========== ADD DRIVER ==========*/
 @media screen and (min-width: 576px) {
 
@@ -412,44 +421,46 @@
         display: flex;
     }
 
-    .add-button {
-        margin-left: var(--mb-special-1);
-        /* --mb-special-1: 54rem;*/
-        margin-top: -11px;
-    }
 
 }
 
-#modalWindowChangesAccount{
-    position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 99999;
-      opacity:0;
-      transition: opacity 400ms linear;
-      pointer-events: none;
+.modal {
+    padding: 20px;
+
+    .modal-title {
+        font-size:20px;
+        font-weight: 500;
+        font-family: $title-font;
     }
-    #modalWindowChangesAccount:target
-    {
-      opacity:1;
-      pointer-events: auto;
+
+    .form-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        grid-gap: 15px 15px;
+        
     }
-    #modalWindowChangesAccount > div 
-    {
-      width: 400px;
-      height: 270px;
-      position: relative;
-      margin: 10% auto;
-      padding: 20px 20px 13px 20px;
-      border: solid;
-      border-color: var(--text-area-color);
-      border-width : 2px;
-      background:var(--text-area-color);
-      border-radius: 10px;
+
+    hr {
+        grid-column: 1 / 3;
+        
+
+        &.hr-1 {
+            margin: 15px 0;
+        }
+
+        &.hr-2 {
+            margin-top: 15px;
+        }
     }
+
+    .modal-button {
+        grid-column-start: 2;
+        justify-self: end;
+        
+    }
+}
+
 
 /**CLASS**/
 .dashboard-subtitle-van,
@@ -581,7 +592,6 @@ input.accountphone {
 
 /*Button*/
 .add-driver {
-    display: inline-block;
     background-color: var(--first-color);
     color: #FFF;
     padding: .75rem 1rem;
@@ -594,6 +604,15 @@ input.accountphone {
 .add-driver:hover {
     background-color: var(--hover-color);
     cursor: pointer;
+}
+
+.cancel {
+    margin: 0 15px;
+    color: #343A40;
+
+    &:hover {
+        color: #000;
+    }
 }
 
 

@@ -8,7 +8,7 @@
 
         <!-- <img src="../assets/vango-logo.png" width="90" height="60" class="logo-head rounded mx-auto d-block" alt="VanGo logo"> -->
 
-        @livewire('form-validate')
+        @livewire('login-validate')
         
     </div>
 

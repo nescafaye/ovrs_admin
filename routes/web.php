@@ -47,6 +47,8 @@ Route::get('/create/driver', [DriverController::class, 'create'])->name('driver.
 
 Route::post('/store/driver', [DriverController::class, 'store'])->name('driver.store');
 
+// Route::resource('driver', DriverController::class);
+
 // Route::delete('', [DriverController::class, 'destroy'])->name('driver.delete');
 
 Route::get('/commuter/{comm_id?}', [CommuterController::class, 'index'])->name('commuter');

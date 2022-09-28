@@ -1,9 +1,4 @@
 @extends('layouts.sidebar') 
-    <style>
-        .sidebar {
-            display: none;
-        }
-    </style>
 
 
 @section('content')
@@ -24,7 +19,6 @@
 
 </section> --}}
 
-hahha
 
 
 @endsection

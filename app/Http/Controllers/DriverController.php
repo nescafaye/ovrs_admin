@@ -27,6 +27,7 @@ class DriverController extends Controller
         $count = Driver::count();
 
         return view('driver.index', compact('drivers', 'dvr', 'count'));
+        
     }
     
     public function create()
@@ -38,30 +39,29 @@ class DriverController extends Controller
     {
 
         // For validation
-         $request->validate([
+         $all = $request->validate([
             'fname' => 'required',
             'lname' => 'required',
             'email' => 'email|unique:drivers',
             'username' => 'required|unique:drivers',
-            'gender' => 'in:Female,Male,Others',
+            'gender' => 'in:Female,Male,Others|nullable',
             'phone' => 'min:12|nullable|numeric',
-            'avatar' => 'nullable|image',
-            'accName' => 'required',
-            'accNumber' =>'required|min:12|numeric',
+            'profilePic' => 'nullable|image',
+            'accName' => 'nullable', //required
+            'accNumber' =>'nullable|min:12|numeric', //required
             'password'
             
         ]);
 
-        // $request->user()->fill([
-        //     'password' => Hash::make($request->newPassword)
-        // ])->save();
-        
-        // $pass = bcrypt($request->password);
 
-        Driver::create($request->all());
-       
-        return view('driver.index')
-                ->with('success','Driver added successfully.');
+        $all['password'] = Hash::make(request()->password);
+        Driver::create($all);
+
+        $latest = Driver::latest()->first();
+        session()->flash('success', 'Driver added successfully.');
+        return redirect()
+                ->route('driver', ['id' => $latest->dvr_id]);
+                // ->with('success','Driver added successfully.');
     }
 
     // public function destroy(Request $rq) {
