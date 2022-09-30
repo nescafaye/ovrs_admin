@@ -11,8 +11,7 @@
     <form action="{{ route('driver.store') }}" method="post">
         @csrf
 
-        @livewire('validation')
-
+        @livewire('driver.create-validation')
 
     </form>
 

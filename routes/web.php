@@ -34,8 +34,6 @@ Route::get('/welcome', function () {
 });
 
 
-// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('admin.home')->middleware('is_admin');
-
 // Auth::routes(['register' => false]);
 Auth::routes();
 
@@ -47,11 +45,15 @@ Route::get('/create/driver', [DriverController::class, 'create'])->name('driver.
 
 Route::post('/store/driver', [DriverController::class, 'store'])->name('driver.store');
 
+Route::post('/edit/driver', [DriverController::class, 'update'])->name('driver.edit');
+
 // Route::resource('driver', DriverController::class);
 
 // Route::delete('', [DriverController::class, 'destroy'])->name('driver.delete');
 
 Route::get('/commuter/{comm_id?}', [CommuterController::class, 'index'])->name('commuter');
+
+Route::post('/edit/commuter', [CommuterController::class, 'update'])->name('commuter.edit');
 
 // Route::get('/commuter/{comm_id?}', [CommuterController::class, 'show'])->name('commuter.show');
 
@@ -68,8 +70,6 @@ Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 Route::get('/home/driver', [DriverHomeController::class, 'index'])->name('driverhome');
 
 //logout
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('');
- });
-
- 
+});

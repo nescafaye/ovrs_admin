@@ -28,7 +28,6 @@
 
     <div class="navbar">
 
-        {{-- <i class='bx bx-search'></i> --}}
         <input type="text" placeholder="Search transaction, driver, commuter, van" id="search" autocomplete="off">
 
         <div class="add-btns">

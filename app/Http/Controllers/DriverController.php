@@ -10,6 +10,8 @@ class DriverController extends Controller
 {
     //
 
+    protected $table = 'drivers';
+
     /**
      * Create a new controller instance.
      *
@@ -40,29 +42,72 @@ class DriverController extends Controller
 
         // For validation
          $all = $request->validate([
-            'fname' => 'required',
-            'lname' => 'required',
-            'email' => 'email|unique:drivers',
-            'username' => 'required|unique:drivers',
-            'gender' => 'in:Female,Male,Others|nullable',
-            'phone' => 'min:12|nullable|numeric',
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
+            'username' => 'min:6|required|unique:drivers|string',
+            'email' => 'required|unique:drivers|email',
+            'gender' => 'nullable|in:Female,Male,Others',
+            'phone' => 'min:12|required|unique:drivers|numeric',
             'profilePic' => 'nullable|image',
-            'accName' => 'nullable', //required
-            'accNumber' =>'nullable|min:12|numeric', //required
-            'password'
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            'accName' => 'nullable|alpha', //required
+            'accNumber' => 'min:12|nullable|numeric'//required
             
         ]);
 
 
         $all['password'] = Hash::make(request()->password);
-        Driver::create($all);
-
+        $create = Driver::create($all);
         $latest = Driver::latest()->first();
-        session()->flash('success', 'Driver added successfully.');
+
+        if ($create) {
+
         return redirect()
-                ->route('driver', ['id' => $latest->dvr_id]);
-                // ->with('success','Driver added successfully.');
+                ->route('driver', ['id' => $latest->dvr_id])
+                // ->session()->flash('success', 'Driver added successfully.');
+                ->with('success', 'Driver added successfully.');
+        }
+
+        else {
+            return redirect()
+                ->route('driver')
+                ->session()->flash('error', 'Failed to add driver.');
+        }
+        
+                
     }
+
+    public function update(Request $request)
+    {
+        $all = $request->validate([
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
+            'username' => 'min:6|required|unique:drivers|string',
+            'email' => 'required|unique:drivers|email',
+            'gender' => 'nullable|in:Female,Male,Others',
+            'phone' => 'min:12|required|unique:drivers|numeric',
+            'profilePic' => 'nullable|image',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            'accName' => 'nullable|alpha',
+            'accNumber' => 'min:12|nullable|numeric'
+        ]);
+
+        $dvr = Driver::find($request->id);
+        $update = Driver::where('dvr_id', $dvr)->update($all);
+        
+        if  ($update)
+            {
+                // return redirect()->back()->with('success','Changes has been saved successfully!');
+                return redirect()->back()->session()->flash('success','Changes has been saved successfully!');
+            }
+        else
+            {
+                return redirect()->back()->session()->flash('error','Changes failed to save');
+            }
+    }
+
 
     // public function destroy(Request $rq) {
 
@@ -76,4 +121,5 @@ class DriverController extends Controller
     //     return view('driver.index', compact('drivers','dvr', 'count'))
     //             ->with('success','Driver deleted successfully.');
     // }
+
 }

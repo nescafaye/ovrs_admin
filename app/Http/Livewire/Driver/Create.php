@@ -21,6 +21,7 @@ class Create extends ModalComponent
     public static function closeModalOnClickAway(): bool
     {
         return false;
+
     }
     
     

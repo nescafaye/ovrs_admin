@@ -37,9 +37,12 @@
     'resources/sass/route.scss',
     'resources/sass/settings.scss', 
     'resources/js/app.js'
+    
     ])
+    
 
     @livewire('livewire-ui-modal')
+
     @livewireStyles
 
 </head>
@@ -155,8 +158,11 @@
        }
       }
       </script>
+
+      
     
     @livewireScripts
+    
     
 </body>
 </html>

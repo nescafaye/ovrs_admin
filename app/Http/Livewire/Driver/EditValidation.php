@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Driver;
 
 use Livewire\Component;
+use App\Models\Driver;
 
-class Validation extends Component
+
+class EditValidation extends Component
 {
     public $fname;
     public $lname;
@@ -18,17 +20,36 @@ class Validation extends Component
     public $accName;
     public $accNumber;
 
+    public $driver;
+
+    public function mount(Driver $driver) {
+
+        $this->fname = $driver->fname;
+        $this->lname = $driver->lname;
+        $this->username = $driver->username;
+        $this->email = $driver->email;
+        $this->gender = $driver->gender;
+        $this->phone = $driver->phone;
+        $this->accName = $driver->accName;
+        $this->accNumber = $driver->accNumber;
+    }
+
+    public function render()
+    {
+        return view("livewire.driver.edit-validation");
+    }
+
     protected $rules = [
-        'fname' => 'required|alpha',
-        'lname' => 'required|alpha',
+        'fname' => 'required|string',
+        'lname' => 'required|string',
         'username' => 'min:6|required|unique:drivers|string',
         'email' => 'required|unique:drivers|email',
         'gender' => 'nullable|in:Female,Male,Others',
         'phone' => 'min:12|required|unique:drivers|numeric',
         'profilePic' => 'nullable|image',
-        'password' => 'required',
-        'password_confirmation' => 'required|same:password',
-        'accName' => 'nullable|alpha',
+        'password' => 'nullable',
+        'password_confirmation' => 'nullable|same:password',
+        'accName' => 'nullable|string',
         'accNumber' => 'min:12|nullable|numeric'
 
     ];
@@ -54,10 +75,6 @@ class Validation extends Component
     {
         $this->validateOnly($propertyName);
     }
-
-    public function render()
-    {
-        return view('livewire.validation');
-    }
+    
     
 }

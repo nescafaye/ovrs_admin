@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <div class="list-container">
 
     <div class="search-bar">
@@ -25,8 +26,6 @@
         <div class="results">
             <small>Showing results 1-{{ $count }} of {{ $count }}</small>
         </div>
-
-        {{-- {{ route('driver', ['dvr_id' => $driver->dvr_id]) }} --}}
 
         @foreach ($drivers as $driver)
 
@@ -75,18 +74,32 @@
 @include('layouts.profile')
 
 <div class="content-details">
-    
+
     <div class="flash-message" id="flash">
-        {{-- view details --}}
+        
         @if (session()->has('success'))
         <div class="success-msg msg">
             <div class="msg-txt">
                 <iconify-icon inline icon="bi:check-circle" width="17" height="17"></iconify-icon>
                 <span class>{{ session('success') }}</span>
             </div>
-                <iconify-icon icon="akar-icons:circle-x" class="dismiss" onclick="closeMsg()" width="19" height="19"></iconify-icon>
+            <iconify-icon icon="akar-icons:circle-x" class="dismiss" onclick="closeMsg()" width="19" height="19">
+            </iconify-icon>
         </div>
+
+        @elseif (session()->has('error'))
+
+        <div class="error-msg msg">
+            <div class="msg-txt">
+                <iconify-icon inline icon="bi:check-circle" width="17" height="17"></iconify-icon>
+                <span class>{{ session('error') }}</span>
+            </div>
+            <iconify-icon icon="akar-icons:circle-x" class="dismiss" onclick="closeMsg()" width="19" height="19">
+            </iconify-icon>
+        </div>
+
         @endif
+
     </div>
 
 
@@ -96,8 +109,9 @@
 
         <div class="action">
 
-            <i class='bx bxs-edit'></i>
-            <a onclick="Livewire.emit('openModal', 'driver.create')"><i class='bx bx-plus-circle'></i></a>
+            <a onclick='Livewire.emit("openModal", "driver.edit",  {{ json_encode($dvr) }})'><i
+                    class='bx bxs-edit'></i></a>
+            <a onclick='Livewire.emit("openModal", "driver.create")'><i class='bx bx-plus-circle'></i></a>
             {{-- <form action="{{ route('driver', ['id' => $dvr->dvr_id])}}" method="post">
                 @csrf
                 @method('DELETE')
@@ -137,6 +151,7 @@
                             <iconify-icon inline icon="ant-design:phone-filled" width="18" height="18"></iconify-icon>{{
                             $dvr->phone }} @empty($dvr->phone) N/A @endempty
                         </small>
+                        &nbsp;
                         <small class="driver-txt">
                             <iconify-icon inline icon="ic:baseline-email" width="18" height="18"></iconify-icon>{{
                             $dvr->email }}
@@ -153,20 +168,15 @@
 
             <div class="driver-assigned col">
 
-                <h4 class="driver-title">Assigned to</h4>
+                <h4 class="driver-title">Other information</h4>
 
                 <div class="driver-van">
 
-                    <div class="driver-van-img">
-                        <img src="{{ asset('assets/van-pic.png')}}" alt="">
-                    </div>
 
                     <div class="driver-van-detail">
 
-                        <p class="driver-lbl">Model</p>
-                        <small class="driver-txt">Commuter Bus</small>
-                        <p class="driver-lbl">Plate Number</p>
-                        <small class="driver-txt">SV30-0169266</small>
+                        <p class="driver-lbl">Gender</p>
+                        <small class="driver-txt">{{ $dvr->gender }} @empty($dvr->gender) N/A @endempty</small>
 
                     </div>
 
@@ -179,9 +189,9 @@
 
                 <div class="driver-gcash-detail">
                     <p class="driver-lbl">Account Name</p>
-                    <small class="driver-txt">{{ $dvr->accName }}</small>
+                    <small class="driver-txt">{{ $dvr->accName }} @empty($dvr->accName) N/A @endempty</small>
                     <p class="driver-lbl">Account Number</p>
-                    <small class="driver-txt">{{ $dvr->accNumber }}</small>
+                    <small class="driver-txt">{{ $dvr->accNumber }} @empty($dvr->accNumber) N/A @endempty</small>
                 </div>
 
             </div>

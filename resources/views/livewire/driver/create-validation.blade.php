@@ -5,7 +5,7 @@
     <div class="first-name dvr">
 
         <label for="fname">First Name</label>
-        <input class="textbox fn" wire:model.lazy="fname" id="fname" name="fname" type="text" placeholder="{{ __('First Name') }}">
+        <input class="textbox fn" wire:model.lazy="fname" id="fname" name="fname" type="text" placeholder="{{ __('First Name') }}" required>
 
         @error('fname')
         <span class="error-validation" role="alert">
@@ -14,12 +14,10 @@
         @enderror
     </div>
 
-    {{-- @livewire('validation') --}}
-
     <div class="last-name dvr">
 
         <label for="lname">Last Name</label>
-        <input class="textbox ln" wire:model.lazy="lname" id="lname" name="lname" type="text" placeholder="{{ __('Last Name') }}">
+        <input class="textbox ln" wire:model.lazy="lname" id="lname" name="lname" type="text" placeholder="{{ __('Last Name') }}" required>
         
         @error('lname')
         <span class="error-validation" role="alert">
@@ -31,8 +29,8 @@
     <div class="user-name dvr">
 
         <label for="uname">Username</label>
-        <input class="textbox" wire:model.lazy="username" id="uname" name="username" type="text" placeholder="{{ __('Username') }}">
-        @error('uname')
+        <input class="textbox" wire:model.lazy="username" id="uname" name="username" type="text" placeholder="{{ __('Username') }}" required>
+        @error('username')
         <span class="error-validation" role="alert">
             {{ $message }}
         </span>
@@ -42,7 +40,7 @@
     <div class="e-mail dvr">
 
         <label for="email">Email</label>
-        <input class="textbox" wire:model.lazy="email" id="email" name="email" type="email" placeholder="{{ __('Email') }}">
+        <input class="textbox" wire:model.lazy="email" id="email" name="email" type="email" placeholder="{{ __('Email') }}" required>
         @error('email')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -75,7 +73,7 @@
     <div class="password dvr">
 
         <label for="pass">Password</label>
-        <input class="textbox" wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}">
+        <input class="textbox" wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}" required>
         @error('password')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -86,7 +84,7 @@
     <div class="password-confirm dvr">
 
         <label for="password_confirmation">Confirm Password</label>
-        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}">
+        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}" required>
         @error('password_confirmation')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -122,7 +120,7 @@
 
     <div class="modal-button">
         <button wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</button>
-        <button type="submit" class="add-driver">{{__('Add Driver')}}</button>
+        <button type="submit" class="add-driver">{{__('Add')}}</button>
     </div>
 
 </div>
