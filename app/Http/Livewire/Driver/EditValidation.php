@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Driver;
 
 use Livewire\Component;
 use App\Models\Driver;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class EditValidation extends Component
@@ -22,8 +24,8 @@ class EditValidation extends Component
 
     public $driver;
 
-    public function mount(Driver $driver) {
-
+    public function mount(Driver $driver)
+    {
         $this->fname = $driver->fname;
         $this->lname = $driver->lname;
         $this->username = $driver->username;
@@ -36,7 +38,8 @@ class EditValidation extends Component
 
     public function render()
     {
-        return view("livewire.driver.edit-validation");
+        return view('livewire.driver.edit-validation');
+
     }
 
     protected $rules = [
@@ -61,7 +64,7 @@ class EditValidation extends Component
     ];
 
     protected $validationAttributes = [
-    
+
         'fname' => 'first name',
         'lname' => 'last name',
         'phone' => 'phone number',
@@ -75,6 +78,6 @@ class EditValidation extends Component
     {
         $this->validateOnly($propertyName);
     }
-    
-    
+
+
 }

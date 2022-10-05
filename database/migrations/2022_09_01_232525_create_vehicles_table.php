@@ -19,7 +19,6 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('plateNo')->unique();
-            // $table->primary('plateNo');
 
             $table->foreignId('assignedDriver')
             ->constrained('drivers','dvr_id')
@@ -27,10 +26,15 @@ return new class extends Migration
             ->onDelete('cascade');
 
             $table->string('model');
+            $table->decimal('rentalPrice');
+            $table->string('brand');
+            $table->string('color')->nullable();
+            $table->enum('transmissionType', ['Automatic','Manual','CVT Transmission']);
             $table->string('amenities')->nullable();
             $table->string('seatCapacity');
             $table->text('desc');
             $table->timestamps();
+            
         });
         
     }

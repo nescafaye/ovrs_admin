@@ -8,6 +8,7 @@
 
     <div class="search-bar">
         <input type="text" placeholder="Search Driver" id="search" autocomplete="off">
+        <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
     </div>
 
     <div class="select-all">
@@ -76,7 +77,7 @@
 <div class="content-details">
 
     <div class="flash-message" id="flash">
-        
+
         @if (session()->has('success'))
         <div class="success-msg msg">
             <div class="msg-txt">
@@ -177,6 +178,14 @@
 
                         <p class="driver-lbl">Gender</p>
                         <small class="driver-txt">{{ $dvr->gender }} @empty($dvr->gender) N/A @endempty</small>
+
+                        <p class="driver-lbl">Assigned Van</p>
+
+                        {{-- @foreach ($assigned as $ass)
+                            <small class="driver-txt link">
+                                <a href="{{ route('van', ['id' => $ass->id]) }}">{{ $ass->brand }} {{ $ass->model }}</a>
+                            </small>
+                        @endforeach --}}
 
                     </div>
 

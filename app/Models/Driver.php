@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+
 
 class Driver extends Model
 {
@@ -43,8 +43,11 @@ class Driver extends Model
         'remember_token',
     ];
 
-    // public function user()
+    /**
+     * Get the assigned van for the driver.
+     */
+    // public function assignedVan()
     // {
-    //     return $this->belongsTo('App\User'); 
+    //     return $this->hasMany(Vehicle::class, 'assignedDriver');
     // }
 }

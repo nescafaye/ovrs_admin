@@ -11,6 +11,9 @@ class DriverController extends Controller
     //
 
     protected $table = 'drivers';
+    public $driver;
+    public $dvr_id;
+    
 
     /**
      * Create a new controller instance.
@@ -28,6 +31,8 @@ class DriverController extends Controller
         $dvr = Driver::find($rq->id);
         $count = Driver::count();
 
+        // $assigned = $dvr->assignedVan;
+
         return view('driver.index', compact('drivers', 'dvr', 'count'));
         
     }
@@ -39,7 +44,6 @@ class DriverController extends Controller
 
     public function store(Request $request)
     {
-
         // For validation
          $all = $request->validate([
             'fname' => 'required|alpha',
@@ -56,9 +60,8 @@ class DriverController extends Controller
             
         ]);
 
-
         $all['password'] = Hash::make(request()->password);
-        $create = Driver::create($all);
+        $create = Driver::Create($all);
         $latest = Driver::latest()->first();
 
         if ($create) {
@@ -75,39 +78,71 @@ class DriverController extends Controller
                 ->session()->flash('error', 'Failed to add driver.');
         }
         
-                
+            
     }
 
-    public function update(Request $request)
+    private function resetInput()
     {
-        $all = $request->validate([
-            'fname' => 'required|alpha',
-            'lname' => 'required|alpha',
-            'username' => 'min:6|required|unique:drivers|string',
-            'email' => 'required|unique:drivers|email',
+        $this->fname = null;
+        $this->lname = null;
+        $this->username = null;
+        $this->email = null;
+        $this->gender = null;
+        $this->phone = null;
+        $this->accName = null;
+        $this->accNumber = null;
+    }
+
+  
+    public function update(Request $rq)
+    {   
+    
+        // return redirect()->back();
+
+        $all = request()->validate([
+            'fname' => 'nullable',
+            'lname' => 'nullable',
+            'username' => 'nullable',
+            'email' => 'nullable',
             'gender' => 'nullable|in:Female,Male,Others',
-            'phone' => 'min:12|required|unique:drivers|numeric',
-            'profilePic' => 'nullable|image',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
-            'accName' => 'nullable|alpha',
-            'accNumber' => 'min:12|nullable|numeric'
+            'phone' => 'nullable',
+            'profilePic' => 'nullable',
+            'password' => 'nullable',
+            'password_confirmation',
+            'accName' => 'nullable',
+            'accNumber' => 'nullable'
         ]);
 
-        $dvr = Driver::find($request->id);
-        $update = Driver::where('dvr_id', $dvr)->update($all);
         
-        if  ($update)
-            {
-                // return redirect()->back()->with('success','Changes has been saved successfully!');
-                return redirect()->back()->session()->flash('success','Changes has been saved successfully!');
-            }
-        else
-            {
-                return redirect()->back()->session()->flash('error','Changes failed to save');
-            }
+
+        $id = Driver::find($rq->input('dvr_id'), ['dvr_id']);
+        $all['password'] = Hash::make(request()->password);
+        $update = Driver::where('dvr_id', $id)->update($all);
+        // // $latest = Driver::orderBy('updated_at','DESC')->first();
+
+        if ($update) {
+
+            return redirect()
+                ->route('driver', ['id' => $id])
+                ->with('success', 'Driver updated successfully.');
+                // ->session()->flash('success', 'Driver added successfully.');
+
+        } 
+
+        else {
+
+            dd(Driver::find($rq->input('dvr_id')));
+            // return redirect()->to('http://heera.it');
+        }
+
+        // $this->resetInput();
     }
 
+
+    // public function update()
+    //  {
+    //     dd(Driver::find($this->$driver->dvr_id));
+    //  }
 
     // public function destroy(Request $rq) {
 

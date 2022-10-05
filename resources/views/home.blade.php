@@ -39,62 +39,23 @@
                     
                     <div class="ongoing">
 
-                        <div class="ongoing-list">
-                            
-                            <p class="route-name">Tuguegarao to Alcala</p>
-
-                            <div class="info">
-                                <p><span class="iconify-inline" data-icon="mdi:car-seat" data-width="20" data-height="20"></span>10/15 Seats</p>
-                                <p><span class="iconify-inline" data-icon="akar-icons:schedule" data-width="20" data-height="20"></span>Mar 21 2022, 1:00 PM</p>    
-                            </div>
-
-                        </div>
+                        @for ($i = 1; $i < 6; $i++)
 
                         <div class="ongoing-list">
                             
                             <p class="route-name">Tuguegarao to Alcala</p>
 
                             <div class="info">
-                                <p><span class="iconify-inline" data-icon="mdi:car-seat" data-width="20" data-height="20"></span>10/15 Seats</p>
-                                <p><span class="iconify-inline" data-icon="akar-icons:schedule" data-width="20" data-height="20"></span>Mar 21 2022, 1:00 PM</p>    
+                                <p><iconify-icon inline icon="mdi:car-seat" width="20" height="20"></iconify-icon>10/15 Seats</p>
+                                <p><iconify-icon inline icon="fluent:calendar-clock-20-filled" width="20" height="20"></iconify-icon>Mar 21 2022, {{$i}}:00 PM</p>    
                             </div>
 
                         </div>
 
-                        <div class="ongoing-list">
-                            
-                            <p class="route-name">Tuguegarao to Alcala</p>
-
-                            <div class="info">
-                                <p><span class="iconify-inline" data-icon="mdi:car-seat" data-width="20" data-height="20"></span>10/15 Seats</p>
-                                <p><span class="iconify-inline" data-icon="akar-icons:schedule" data-width="20" data-height="20"></span>Mar 21 2022, 1:00 PM</p>    
-                            </div>
-
-                        </div>
-
-                        <div class="ongoing-list">
-                            
-                            <p class="route-name">Tuguegarao to Alcala</p>
-
-                            <div class="info">
-                                <p><span class="iconify-inline" data-icon="mdi:car-seat" data-width="20" data-height="20"></span>10/15 Seats</p>
-                                <p><span class="iconify-inline" data-icon="akar-icons:schedule" data-width="20" data-height="20"></span>Mar 21 2022, 1:00 PM</p>    
-                            </div>
-
-                        </div>
-
-                        <div class="ongoing-list">
-                            
-                            <p class="route-name">Tuguegarao to Alcala</p>
-
-                            <div class="info">
-                                <p><span class="iconify-inline" data-icon="mdi:car-seat" data-width="20" data-height="20"></span>10/15 Seats</p>
-                                <p><span class="iconify-inline" data-icon="akar-icons:schedule" data-width="20" data-height="20"></span>Mar 21 2022, 1:00 PM</p>    
-                            </div>
-
-                        </div>
+                        @endfor
 
                     </div>
+
                 </div>
 
                 <div class="col recent-container">

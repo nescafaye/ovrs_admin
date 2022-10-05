@@ -167,9 +167,9 @@
                         margin-right: 10px;
                     }
 
-                    .iconify-inline {
+                    iconify-icon {
                         color: #008080;
-                        margin-right: 8px;
+                        margin-right: 6px;
                     }
                 }
             }
@@ -249,6 +249,8 @@
 
 h2.welcome {
     font-family: $title-font;
+    font-size: var(--h2-font-size);
+    font-weight: 500;
 }
 
 .schedule {
@@ -274,6 +276,7 @@ h2.welcome {
 
         h3 {
             font-family: $title-font;
+            font-size: var(--h2-font-size);
             font-weight: 600;
         }
 

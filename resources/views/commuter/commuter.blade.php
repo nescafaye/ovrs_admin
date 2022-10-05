@@ -7,6 +7,7 @@
 
     <div class="search-bar">
         <input type="text" placeholder="Search Commuter" id="search" autocomplete="off">
+        <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
     </div>
 
     <div class="select-all">
@@ -137,7 +138,7 @@
                     <div class="driver-van-detail">
 
                         <p class="driver-lbl">Gender</p>
-                        <small class="driver-txt">{{ $c->gender }}</small>
+                        <small class="driver-txt">{{ $c->gender }} @empty($c->gender) N/A @endempty</small>
 
                     </div>
 
@@ -151,9 +152,9 @@
 
                 <div class="driver-gcash-detail">
                     <p class="driver-lbl">Account Name</p>
-                    <small class="driver-txt">{{ $c->accName }}</small>
+                    <small class="driver-txt">{{ $c->accName }} @empty($c->accName) N/A @endempty</small>
                     <p class="driver-lbl">Account Number</p>
-                    <small class="driver-txt">{{ $c->accNumber }}</small>
+                    <small class="driver-txt">{{ $c->accNumber }} @empty($c->accNumber) N/A @endempty</small>
                 </div>
 
             </div>
@@ -201,7 +202,9 @@
             </div>
 
             <div class="add-btn">
-                <button class="btn">Add booking<span class="iconify-inline" data-icon="akar-icons:plus"></span></button>
+                <button class="btn">
+                    <iconify-icon inline icon="akar-icons:plus" width="16" height="16"></iconify-icon>&nbsp; Add booking
+                </button>
             </div>
 
         </div>

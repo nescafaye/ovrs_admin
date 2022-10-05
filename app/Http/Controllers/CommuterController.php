@@ -26,13 +26,7 @@ class CommuterController extends Controller
         $c = Commuter::find($rq->id);
         $count = Commuter::count();
 
-        // $id = Commuter::find(1);
-        // $user = User::where('username',$username)->first(); 
-        // $id = $commuters->pluck('comm_id');
-        // $id = Commuter::
-        // return view('commuter', compact('commuters'));
-
-        return view('commuter', compact('placeholder', 'commuters', 'c', 'count'));
+        return view('commuter.commuter', compact('placeholder', 'commuters', 'c', 'count'));
     }
 
     // public function show($comm_id)
@@ -40,5 +34,35 @@ class CommuterController extends Controller
     //     $comm = Commuter::first($comm_id);
     //     return view('display', compact('commuters', 'comm'));
     // }
+
+    public function update(Request $request)
+    {
+        $all = $request->validate([
+            'fname' => 'required|alpha',
+            'lname' => 'required|alpha',
+            'username' => 'min:6|required|unique:commuters|string',
+            'email' => 'required|unique:commuters|email',
+            'gender' => 'nullable|in:Female,Male,Others',
+            'phone' => 'min:12|required|unique:commuters|numeric',
+            'profilePic' => 'nullable|image',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            'accName' => 'nullable|alpha',
+            'accNumber' => 'min:12|nullable|numeric'
+        ]);
+
+        $comm = Commuter::find($request->id);
+        $update = Commuter::where('comm_id', $comm)->update($all);
+        
+        if  ($update)
+            {
+                // return redirect()->back()->with('success','Changes has been saved successfully!');
+                return redirect()->back()->session()->flash('success','Changes has been saved successfully!');
+            }
+        else
+            {
+                return redirect()->back()->session()->flash('error','Changes failed to save');
+            }
+    }
     
 }

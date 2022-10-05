@@ -40,24 +40,22 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
 Route::get('/driver/{dvr_id?}', [DriverController::class, 'index'])->name('driver');
-
 Route::get('/create/driver', [DriverController::class, 'create'])->name('driver.create');
-
 Route::post('/store/driver', [DriverController::class, 'store'])->name('driver.store');
-
-Route::post('/edit/driver', [DriverController::class, 'update'])->name('driver.edit');
+Route::get('/edit/driver', [DriverController::class, 'edit'])->name('driver.edit');
+Route::post('/update/driver', [DriverController::class, 'update'])->name('driver.update');
 
 // Route::resource('driver', DriverController::class);
 
 // Route::delete('', [DriverController::class, 'destroy'])->name('driver.delete');
 
 Route::get('/commuter/{comm_id?}', [CommuterController::class, 'index'])->name('commuter');
-
 Route::post('/edit/commuter', [CommuterController::class, 'update'])->name('commuter.edit');
 
 // Route::get('/commuter/{comm_id?}', [CommuterController::class, 'show'])->name('commuter.show');
 
-Route::get('/van', [VanController::class, 'index'])->name('van');
+Route::get('/van/{van_id?}', [VanController::class, 'index'])->name('van');
+Route::post('/store/van', [VanController::class, 'store'])->name('van.store');
 
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
 

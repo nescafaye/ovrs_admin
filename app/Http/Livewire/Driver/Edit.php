@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Driver;
 
 use LivewireUI\Modal\ModalComponent;
 use App\Models\Driver;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class Edit extends ModalComponent
 {
@@ -13,32 +16,15 @@ class Edit extends ModalComponent
     public function mount($dvr_id)
     {
         $this->driver = Driver::findOrFail($dvr_id);
+        
     }
 
     public function render()
     {
-        return view('livewire.driver.edit');
+        $driver_id = Driver::findOrFail($this->driver->dvr_id);
+        return view('livewire.driver.edit', compact('driver_id'));
     }
 
-    // public function edit(Request $rq)
-    // {
-    //     $driver = Driver::find($rq->id);
-    //     $this->fname = $driver->fname;
-    //     $this->lname = $driver->lname;
-    //     $this->username = $driver->username;
-    //     $this->email = $driver->email;
-    //     $this->gender = $driver->gender;
-    //     $this->phone = $driver->phone;
-    //     $this->email = $driver->email;
-    //     $this->gender = $driver->gender;
-    //     $this->password = $driver->password;
-    //     $this->password_confirmation = $driver->password_confirmation;
-    //     $this->profilePic = $driver->profilePic;
-    //     $this->accName = $driver->accName;
-    //     $this->accNumber = $driver->accNumber;
-
-    //     $this->updateMode = true;
-    // }
 
     public static function closeModalOnEscape(): bool
     {
@@ -49,4 +35,5 @@ class Edit extends ModalComponent
     {
         return false;
     }
+
 }

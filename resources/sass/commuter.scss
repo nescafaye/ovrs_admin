@@ -46,22 +46,23 @@
         .add-btn {
             
             .btn {
-                height: 45px;
-                width: 145px;
+                padding: 10px 12px;
+                padding-right: 14px;
                 background-color: #B2D8D8;
                 border: none;
                 border-radius: 10px;
-                font-size: 15px;
+                font-size: 14px;
 
                 &:hover {
                     background: #008080;
                     color: white;
                     cursor: pointer;
+                    transition: all 0.3s ease;
                 }
 
-                .iconify-inline {
-                    font-size: 16px;
+                iconify-icon {
                     margin-left: 5px;
+                    margin-bottom: -1px;
                 }
             }
         }

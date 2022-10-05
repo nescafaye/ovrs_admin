@@ -1,15 +1,15 @@
-@if ()
-    
-@endif
-
 <div class="form-container">
 
+    {{-- <button wire:click="update">Update</button> --}}
+
     <hr class="hr-1">
+
+    <input class="textbox fn" value="{{ old('dvr_id', $driver->dvr_id) }}" name="dvr_id" type="hidden" placeholder="{{ __('ID') }}" required/>
 
     <div class="first-name dvr">
 
         <label for="fname">First Name</label>
-        <input class="textbox fn" value="{{ old('fname', $driver->fname) }}" id="fname" name="fname" type="text" placeholder="{{ __('First Name') }}" required/>
+        <input class="textbox fn" value="{{ old('fname', $driver->fname) }}" wire:model.lazy="fname" id="fname" name="fname" type="text" placeholder="{{ __('First Name') }}" required/>
         @error('fname')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -20,7 +20,7 @@
     <div class="last-name dvr">
 
         <label for="lname">Last Name</label>
-        <input class="textbox ln" value="{{ old('fname', $driver->lname) }}" wire:model.lazy="lname" id="lname" name="lname" type="text" placeholder="{{ __('Last Name') }}" required>
+        <input class="textbox ln" value="{{ old('lname', $driver->lname) }}" wire:model.lazy="lname" id="lname" name="lname" type="text" placeholder="{{ __('Last Name') }}" required>
         
         @error('lname')
         <span class="error-validation" role="alert">

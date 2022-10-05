@@ -42,10 +42,10 @@ class EditValidation extends Component
     protected $rules = [
         'fname' => 'required|string',
         'lname' => 'required|string',
-        'username' => 'min:6|required|unique:drivers|string',
-        'email' => 'required|unique:drivers|email',
+        'username' => 'min:6|required|unique:commuters|string',
+        'email' => 'required|unique:commuters|email',
         'gender' => 'nullable|in:Female,Male,Others',
-        'phone' => 'min:12|required|unique:drivers|numeric',
+        'phone' => 'min:12|required|unique:commuters|numeric',
         'profilePic' => 'nullable|image',
         'password' => 'nullable',
         'password_confirmation' => 'nullable|same:password',

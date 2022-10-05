@@ -10,6 +10,7 @@
 
             <div class="search-bar">
                 <input type="text" placeholder="Search {{ $placeholder }}" id="search" autocomplete="off">
+                <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
             </div>
     
             <div class="select-all">
@@ -154,7 +155,7 @@
                     </div>
     
                     <div class="add-btn">
-                        <button class="btn">Add schedule<span class="iconify-inline" data-icon="akar-icons:plus"></span></button>
+                        <button class="btn"><iconify-icon inline icon="akar-icons:plus" width="16" height="16"></iconify-icon>&nbsp;Add schedule</button>
                     </div>
     
                 </div>

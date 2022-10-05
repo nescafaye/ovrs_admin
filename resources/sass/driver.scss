@@ -53,9 +53,18 @@
     // background: #000;
 
     .search-bar {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 0.1fr;
+        grid-column-gap: 8px;
+        align-items: center;
         padding: 15px;
         border: 0.5px solid #F0F0F0;
         background: #fff;
+
+        iconify-icon {
+            color: #6C757D;
+        }
 
 
         input {

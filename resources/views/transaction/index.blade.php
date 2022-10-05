@@ -1,7 +1,5 @@
 @extends('layouts.sidebar')
 
-
-
 @section('content')
 
     <div class="transaction">
@@ -10,6 +8,7 @@
 
             <div class="search-bar">
                 <input type="text" placeholder="Search {{ $placeholder }}" id="search" autocomplete="off">
+                <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
             </div>
     
             <div class="select-all">
@@ -107,7 +106,7 @@
                 <div class="transact-body">
                     
                     <div class="reserve-details">
-                        <h4 class="driver-title transact-txt"> <span class="iconify tix" data-icon="fluent:ticket-horizontal-20-regular" data-width="26" data-height="26"></span> Reservation Details</h4>
+                        <h4 class="driver-title transact-txt"> <iconify-icon inline icon="fluent:ticket-horizontal-20-regular" class="tix" width="25" height="25"></iconify-icon> Reservation Details</h4>
 
                             <div class="reserve-row">
 
@@ -150,7 +149,7 @@
                     </div>
 
                     <div class="passenger-details">
-                        <h4 class="driver-title transact-txt"> <span class="iconify" data-icon="icons8:gender-neutral-user" data-width="26" data-height="26"></span> Passenger Details</h4>
+                        <h4 class="driver-title transact-txt"> <iconify-icon inline icon="icons8:gender-neutral-user" width="26" height="26"></iconify-icon> Passenger Details</h4>
                         
                         <div class="passenger-cont">
 
@@ -181,13 +180,13 @@
                     </div>
 
                     <div class="payment-details">
-                        <h4 class="driver-title transact-txt"> <span class="iconify" data-icon="fluent:payment-24-regular" data-width="26" data-height="26"></span>Payment Details</h4>
+                        <h4 class="driver-title transact-txt"> <iconify-icon inline icon="fluent:payment-24-regular" width="26" height="26"></iconify-icon>Payment Details</h4>
 
                         <div class="payment-cont">
 
                             <div class="payment-mode">
                                 <p class="driver-lbl">Mode of Payment</p>
-                                <small class="driver-txt">michellebaui@gmail.com</small>
+                                <small class="driver-txt">GCash</small>
                             </div>
 
                             <div class="total-amt">
