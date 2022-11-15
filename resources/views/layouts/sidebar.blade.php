@@ -82,7 +82,7 @@
            <span class="tooltip">Commuter</span>
          </li>
          <li>
-           <a href="{{ url('van/?id=1') }}" class="{{ (request()->is('van')) ? 'active' : '' }}">
+           <a href="{{ url('van/?id=2') }}" class="{{ (request()->is('van')) ? 'active' : '' }}">
              <span class="iconify" data-icon="fa6-solid:van-shuttle"></span>
              <span class="links_name">Van</span>
            </a>
@@ -97,7 +97,7 @@
            <span class="tooltip">Transaction</span>
          </li>
          <li>
-           <a href="{{ route('route') }}" class=" routes {{ (request()->is('route')) ? 'active' : '' }}">
+           <a href="{{ url('route/?id=1') }}" class=" routes {{ (request()->is('route')) ? 'active' : '' }}">
              <span class="iconify loc" data-icon="ci:location"></span>
              <span class="links_name">Route</span>
            </a>

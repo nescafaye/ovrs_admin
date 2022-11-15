@@ -32,9 +32,10 @@
     
                 {{--  --}}
     
-               {{-- @foreach ($commuters as $commuter) --}}
+               @foreach ($routes as $route)
                    
-                <a href="" class="list-info {{ (request()->is('commuter.*')) ? 'active' : '' }}">
+               <a href="{{ route('route', ['id' => $route->id]) }}"
+                class="list-info @if ( $route->id == $rt->id ) active @endif">
     
                     <input type="checkbox" name="" id="select-list">
     
@@ -45,15 +46,15 @@
                         </div> --}}
                     
                         <div class="label-txt">
-                            <h4>Piat to Tuguegarao</h4>
-                            <p>34084</p>
+                            <h4>{{ $route->routeTitle }}</h4>
+                            <p>{{ $route->routeNo }}</p>
                         </div>
     
                     </label>
     
                 </a>
     
-                {{-- @endforeach --}}
+                @endforeach
     
                 <div class="pagination">
                     <ul class="pagenum">
@@ -84,7 +85,7 @@
                 <div class="action">
     
                     <i class='bx bxs-edit'></i>
-                    <a href=""><i class='bx bx-plus-circle' ></i></a>
+                    <a onclick='Livewire.emit("openModal", "route.create")'><i class='bx bx-plus-circle' ></i></a>
     
                 </div>
     
@@ -94,24 +95,25 @@
 
                 <div class="route-details">
 
+
                     <div class="route-no">
                         <p class="driver-lbl">Route Number</p>
-                        <small class="driver-txt">34084</small>
+                        <small class="driver-txt">{{ $rt->routeNo }}</small>
                     </div>
 
-                    <div class="price">
+                    {{-- <div class="price">
                         <p class="driver-lbl">Price</p>
                         <small class="driver-txt">300 PHP</small>
-                    </div>
+                    </div> --}}
 
                     <div class="origin">
                         <p class="driver-lbl">Origin</p>
-                        <small class="driver-txt">Piat</small>
+                        <small class="driver-txt">{{ $rt->origin }}</small>
                     </div>
 
                     <div class="destination">
                         <p class="driver-lbl">Destination</p>
-                        <small class="driver-txt">Tuguegarao</small>
+                        <small class="driver-txt">{{ $rt->destination }}</small>
                     </div>
                 </div>
 
@@ -165,31 +167,34 @@
                     <table>
                         <tr class="table-head">
                             {{-- <th>Transaction  No</th> --}}
-                            <th>Status</th>
+                            {{-- <th>Status</th> --}}
+                            <th>Vehicle No</th>
                             <th>Departure Date</th>
+                            <th>Departure Time</th>
                             <th>Return Date</th>
-                            {{-- <th>Seats</th>
+                            {{-- <th>Seats</th> --}}
                             <th>Fare</th>
-                            <th>Transaction time</th> --}}
+                            {{-- <th>Transaction time</th> --}}
                         </tr>
     
     
-                        {{-- dummy data --}}
     
-                        @for ($i = 0; $i < 6; $i++)
-    
+                        @foreach ($rt->trips as $trip)
     
                             <tr class="table-data" onclick="">
                                 {{-- <td>12345678{{$i}}</td> --}}
-                                <td>Completed</td>
-                                <td>March 2{{$i}} 2022</td>
-                                <td>March 2{{$i+1}} 2022</td>
+                                <td>{{ $trip->plateNo }}</td>
+                                <td>{{ $trip->pivot->departureDate }}</td>
+                                <td>{{ $trip->pivot->departureTime }}</td>
+                                <td>{{ $trip->pivot->returnDate }} @empty($route->pivot->returnDate) None @endempty </td>
+                                <td>{{ $trip->pivot->fare }}</td>
+                                
                                 {{-- <td>B{{$i+1}}</td>
                                 <td>150.00</td>
                                 <td>{{$i+1}}:{{$i}}{{$i+2}} PM Mar 1{{$i}}</td> --}}
                             </tr>
     
-                        @endfor
+                        @endforeach
     
     
                     </table>

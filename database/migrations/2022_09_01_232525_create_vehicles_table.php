@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('amenities')->nullable();
             $table->string('seatCapacity');
             $table->text('desc');
+            $table->string('vanImages')->nullable();
             $table->timestamps();
             
         });

@@ -60,6 +60,7 @@ Route::post('/store/van', [VanController::class, 'store'])->name('van.store');
 Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction');
 
 Route::get('/route', [RouteController::class, 'index'])->name('route');
+Route::post('/store/route', [RouteController::class, 'store'])->name('route.store');
 
 Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 

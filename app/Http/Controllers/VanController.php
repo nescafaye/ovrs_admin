@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VanController extends Controller
 {
@@ -24,15 +25,17 @@ class VanController extends Controller
         $placeholder = 'Van';
         $vans = Vehicle::all();
         $vhcl = Vehicle::find($rq->id);
+
+        // dd($vans = $vhcl->routes()->get());
         
-        $assigned = Vehicle::find($rq->id)->assignedDriver()->get(); //gets the assigned driver of the current van
+        $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
         return view('van.index',compact('placeholder', 'vans', 'vhcl', 'assigned'));
     }
 
     public function store(Request $request)
     {
 
-        // For validation
+         // For validation
          $all = $request->validate([
             'plateNo' => 'required',
             'assignedDriver' => 'required',
@@ -44,12 +47,45 @@ class VanController extends Controller
             'amenities' => 'nullable',
             'seatCapacity' => 'required',
             'desc' => 'required',
+            'vanImages' => 'nullable',
             
         ]);
 
+        $vanImages = array();
 
-        $create = Vehicle::create($all);
+        if ($files = $request->file('vanImages')) {
+
+            foreach ($files as $file) {
+                $imageName = hash('md5', date('YmdHis')) . "." . $file->getClientOriginalExtension();
+                $destinationPath = Storage::path('public/images/'); 
+                // $imageUrl = $destinationPath.$imageName;
+                $file->move($destinationPath, $imageName);
+
+                $vanImages[] = "$imageName";
+            }
+        }
+
+        $create = Vehicle::insert( [
+            'vanImages'=>  implode("|", $vanImages),
+            'plateNo' => $all['plateNo'],
+            'assignedDriver' => $all['assignedDriver'],
+            'model' => $all['model'],
+            'rentalPrice' => $all['rentalPrice'],
+            'brand' => $all['brand'],
+            'color' => $all['color'],
+            'transmissionType' => $all['transmissionType'],
+            'amenities' => $all['amenities'],
+            'seatCapacity' => $all['seatCapacity'],
+            'desc' => $all['desc'],
+           
+        ]);
+
+        Vehicle::create($all);
         $latest = Vehicle::latest()->first();
+
+        // Vehicle::insert([
+        //     'vanImages' => implode('|', )
+        // ])
 
         if ($create) {
 
@@ -64,8 +100,7 @@ class VanController extends Controller
                 ->route('van')
                 ->session()->flash('error', 'Failed to add vehicle.');
         }
-        
-                
+                 
     }
 
 }

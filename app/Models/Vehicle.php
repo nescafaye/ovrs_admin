@@ -17,6 +17,7 @@ class Vehicle extends Model
 
     protected $table = 'vehicles';
     protected $primaryKey = 'id';
+    
 
     protected $fillable = [
         'plateNo',
@@ -29,6 +30,7 @@ class Vehicle extends Model
         'amenities',
         'seatCapacity',
         'desc',
+        'vanImages'
     ];
 
     /**
@@ -37,6 +39,14 @@ class Vehicle extends Model
     public function assignedDriver()
     {
         return $this->belongsTo(Driver::class, 'assignedDriver', 'dvr_id');
+    }
+
+    /**
+     * Get the routes of the vehicle.
+     */
+    public function routes()
+    {
+        return $this->belongsToMany(Route::class, 'route_vehicle', 'plateNo', 'routeNo', 'plateNo', 'routeNo')->withPivot('fare', 'departureDate', 'departureTime', 'returnDate');
     }
 
     

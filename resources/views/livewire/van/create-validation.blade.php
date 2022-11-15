@@ -28,6 +28,7 @@
     </div>
 
 
+
     <div class="brand vhl">
 
         <label for="brand">Brand</label>
@@ -134,9 +135,9 @@
     <div class="van-image vhl">
 
         <label for="van-image">Upload photo</label>
-        <input type="file" multiple class="textbox" name="vanImg" id="van-image" src="" alt="">
+        <input type="file" multiple name="vanImages[]" id="van-image">
 
-        @error('vanImg')
+        @error('vanImages')
         <span class="error-validation" role="alert">
             {{ $message }}
         </span>

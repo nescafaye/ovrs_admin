@@ -81,8 +81,8 @@
                 
                 <div class="action">
     
-                    <i class='bx bxs-edit'></i>
-                    <a href=""><i class='bx bx-plus-circle' ></i></a>
+                    {{-- <i class='bx bxs-edit'></i>
+                    <a href=""><i class='bx bx-plus-circle' ></i></a> --}}
     
                 </div>
     
