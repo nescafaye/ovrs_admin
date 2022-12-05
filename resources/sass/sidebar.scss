@@ -127,17 +127,16 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.4s ease;
-    background: #66b2b239;
 
     &.active {
-        background: #66B2B2;
+        background: #215d5d5b;
 
         i {
-            color: #fff !important
+            color: #fff;
         }
 
         span.links_name {
-            color: #fff !important;
+            color: #fff;
         }
     }
 
@@ -167,7 +166,7 @@
 .sidebar li a:hover i,
 .sidebar li a:hover .iconify {
     transition: all 0.5s ease;
-    color: #004C4C;
+    color: #004C4C !important;
 
 }
 
@@ -278,8 +277,8 @@
         justify-content: space-between;
         align-items: center;
   
-        .iconify-inline {
-          margin-bottom: -1.5px;
+        iconify-icon {
+          margin-bottom: -2.2px;
           margin-right: 2px;
         }
   

@@ -5,6 +5,7 @@
 
 
 <div class="list-container">
+    
 
     <div class="search-bar">
         <input type="text" placeholder="Search Driver" id="search" autocomplete="off">
@@ -25,12 +26,16 @@
     <div class="list">
 
         <div class="results">
-            <small>Showing results 1-{{ $count }} of {{ $count }}</small>
+            <small>Showing results {{ $drivers->firstItem() }}-{{ $drivers->lastItem() }} of {{ $drivers->total() }}</small>
+        </div>
+
+        <div class="pagination">
+            {{ $drivers->links() }}
         </div>
 
         @foreach ($drivers as $driver)
 
-        <a href="{{ route('driver', ['id' => $driver->dvr_id]) }}" class="list-info  
+        <a href="{{ route('driver', ['id' => $driver->dvr_id, $drivers->getPageName() => $drivers->currentPage()]) }}" class="list-info  
             @if ( $driver->dvr_id == $dvr->dvr_id ) active @endif">
 
             <input type="checkbox" name="" id="{{ $driver->username }}">
@@ -39,7 +44,7 @@
 
                 <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
 
-                <div class="label-txt">
+                <div class="label-txt" id="{{ $driver->dvr_id }}">
                     <h4>{{ $driver->fname}} {{ $driver->lname}}</h4>
                     <p>{{ $driver->email }}</p>
                 </div>
@@ -50,22 +55,8 @@
 
         @endforeach
 
-
         <div class="pagination">
-            <ul class="pagenum">
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-left" data-width="25" data-height="25"></span></a>
-                </li>
-                <li class="page-item num"><a href="">1</a></li>
-                <li class="page-item num"><a href="">2</a></li>
-                <li class="page-item num"><a href="">3</a></li>
-                <li class="page-item num"><a href="">4</a></li>
-                <li class="page-item num"><a href="">5</a></li>
-                <li class="page-item num"><a href="">6</a></li>
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-right" data-width="25"
-                            data-height="25"></span></a></li>
-            </ul>
+            {{ $drivers->links() }}
         </div>
 
     </div>
@@ -76,33 +67,7 @@
 
 <div class="content-details">
 
-    <div class="flash-message" id="flash">
-
-        @if (session()->has('success'))
-        <div class="success-msg msg">
-            <div class="msg-txt">
-                <iconify-icon inline icon="bi:check-circle" width="17" height="17"></iconify-icon>
-                <span class>{{ session('success') }}</span>
-            </div>
-            <iconify-icon icon="akar-icons:circle-x" class="dismiss" onclick="closeMsg()" width="19" height="19">
-            </iconify-icon>
-        </div>
-
-        @elseif (session()->has('error'))
-
-        <div class="error-msg msg">
-            <div class="msg-txt">
-                <iconify-icon inline icon="bi:check-circle" width="17" height="17"></iconify-icon>
-                <span class>{{ session('error') }}</span>
-            </div>
-            <iconify-icon icon="akar-icons:circle-x" class="dismiss" onclick="closeMsg()" width="19" height="19">
-            </iconify-icon>
-        </div>
-
-        @endif
-
-    </div>
-
+    <x-flash-message/>
 
     <div class="content-head">
 
@@ -110,15 +75,10 @@
 
         <div class="action">
 
-            <a onclick='Livewire.emit("openModal", "driver.edit",  {{ json_encode($dvr) }})'><i
-                    class='bx bxs-edit'></i></a>
             <a onclick='Livewire.emit("openModal", "driver.create")'><i class='bx bx-plus-circle'></i></a>
-            {{-- <form action="{{ route('driver', ['id' => $dvr->dvr_id])}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Delete</button>
-            </form> --}}
-
+            <a onclick='Livewire.emit("openModal", "driver.edit",  {{ json_encode($dvr) }})'><i class='bx bxs-edit'></i></a>
+            {{-- <a href="{{ route('driver.destroy', ['id' => $dvr->dvr_id]) }}"><i class='bx bx-trash'></i></a> --}}
+            <a onclick='Livewire.emit("openModal", "confirm", {{ json_encode(["id" => $dvr->dvr_id, "routeName" => Route::currentRouteName()]) }})'><i class='bx bx-trash'></i></a>
         </div>
 
     </div>
@@ -211,11 +171,5 @@
     </div>
 
 </div>
-
-<script type="text/javascript">
-    function closeMsg() {
-        document.getElementById("flash").style.display = "none";
-    }
-</script>
 
 @endsection

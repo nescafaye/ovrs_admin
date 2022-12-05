@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if ($count == 0)
+
+    <x-no-record/>
+    
+@else
 
 <div class="list-container">
 
@@ -24,13 +29,16 @@
     <div class="list">
 
         <div class="results">
-            <small>Showing results 1-{{ $count }} of {{ $count }}</small>
+            <small>Showing results {{ $commuters->firstItem() }}-{{ $commuters->lastItem() }} of {{ $commuters->total() }}</small>
         </div>
 
+        <div class="pagination">
+            {{ $commuters->links() }}
+        </div>
 
         @foreach ($commuters as $commuter)
 
-        <a href="{{ route('commuter', ['id' => $commuter->comm_id]) }}"
+        <a href="{{ route('commuter', ['id' => $commuter->comm_id, $commuters->getPageName() => $commuters->currentPage()]) }}"
             class="list-info @if ( $commuter->comm_id == $c->comm_id ) active @endif">
 
             <input type="checkbox" name="" id="{{ $commuter->comm_id }}">
@@ -51,20 +59,7 @@
         @endforeach
 
         <div class="pagination">
-            <ul class="pagenum">
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-left" data-width="25" data-height="25"></span></a>
-                </li>
-                <li class="page-item num"><a href="">1</a></li>
-                <li class="page-item num"><a href="">2</a></li>
-                <li class="page-item num"><a href="">3</a></li>
-                <li class="page-item num"><a href="">4</a></li>
-                <li class="page-item num"><a href="">5</a></li>
-                <li class="page-item num"><a href="">6</a></li>
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-right" data-width="25"
-                            data-height="25"></span></a></li>
-            </ul>
+            {{ $commuters->links() }}
         </div>
 
     </div>
@@ -76,7 +71,7 @@
 
 <div class="content-details comm">
 
-    {{-- view details --}}
+    <x-flash-message/>
 
     <div class="content-head">
 
@@ -84,8 +79,7 @@
 
         <div class="action">
 
-            <a onclick='Livewire.emit("openModal", "commuter.edit",  {{ json_encode($c) }})'><i
-                    class='bx bxs-edit'></i></a>
+            <a onclick='Livewire.emit("openModal", "commuter.edit",  {{ json_encode($c) }})'><i class='bx bxs-edit'></i></a>
 
         </div>
 
@@ -201,11 +195,11 @@
 
             </div>
 
-            <div class="add-btn">
+            {{-- <div class="add-btn">
                 <button class="btn">
                     <iconify-icon inline icon="akar-icons:plus" width="16" height="16"></iconify-icon>&nbsp; Add booking
                 </button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -250,6 +244,8 @@
 
 
 </div>
+    
+@endif
 
 
 @endsection

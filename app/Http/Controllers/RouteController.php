@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Route;
-use Illuminate\Support\Facades\Hash;
 
 class RouteController extends Controller
 {
@@ -23,7 +22,7 @@ class RouteController extends Controller
     public function index(Request $rq)
     {
         $placeholder = 'Route';
-        $routes = Route::all();
+        $routes = Route::paginate(10)->withQueryString();
         $rt = Route::find($rq->id);
     
         return view('route.index', compact('placeholder', 'routes', 'rt'));
@@ -33,13 +32,12 @@ class RouteController extends Controller
     {
         // For validation
          $all = $request->validate([
-            'routeNo' => 'required',
             'origin' => 'required',
             'destination' => 'required',
             'routeTitle' => 'required',
         ]);
 
-        $all['password'] = Hash::make(request()->password);
+        $all['routeNo'] = random_int(000001, 999999);
         $create = Route::Create($all);
         $latest = Route::latest()->first();
 
@@ -54,9 +52,54 @@ class RouteController extends Controller
         else {
             return redirect()
                 ->route('route')
-                ->session()->flash('error', 'Failed to add route.');
+                ->with('error', 'Failed to add route.');
         }
         
             
+    }
+
+    public function update(Request $rq)
+    {   
+
+        $lastUpdated = Route::orderBy('updated_at','DESC')->first();
+
+        $all = $rq->except('_token');
+        
+       $update = Route::where('id', $rq->id)->update($all);
+
+
+        if ($update) {
+
+            return redirect()
+                ->route('route', ['id' => $lastUpdated])
+                ->with('success', 'Route updated successfully.');
+        } 
+
+        else {
+            return redirect()
+                ->route('route')
+                ->with('error', 'Route update failed.');
+           
+        }
+
+        // $this->resetInput();
+    }
+
+    public function destroy(Request $rq) {
+
+        $deleted = Route::destroy($rq->id);
+        $first = Route::all()->first();
+
+        if ($deleted) {
+            
+            return redirect()
+                ->route('route', ['id' => $first->id])
+                ->with('deleted', 'Route deleted.');
+        } 
+    
+        else {
+
+            return back()->with('error', 'Error');
+        }
     }
 }

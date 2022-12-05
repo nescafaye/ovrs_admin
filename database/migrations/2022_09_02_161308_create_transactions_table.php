@@ -14,20 +14,24 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id('transactionNo');
+            $table->id();
+            $table->string('transactionNo')->unique();
 
-            $table->foreignId('commuterId')
-            ->constrained('commuters','comm_id')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            // $table->foreignId('commuterId')
+            // ->constrained('commuters','comm_id')
+            // ->onUpdate('cascade')
+            // ->onDelete('cascade');
 
-            $table->integer('seatsTaken');
+            $table->string('commuterName');
+
+            $table->string('seatsTaken');
             $table->double('totalAmount');
             $table->dateTime('departureDate');
             $table->dateTime('returnDate')->nullable();
             $table->double('fare');
             $table->string('paymentMethod');
             $table->timestamp('transactionTime');
+            $table->timestamps();
         });
     }
 

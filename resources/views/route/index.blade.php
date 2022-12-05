@@ -27,14 +27,16 @@
             <div class="list">
     
                 <div class="results">
-                    <small>Showing results 1-50 of 250</small>
+                    <small>Showing results {{ $routes->firstItem() }}-{{ $routes->lastItem() }} of {{ $routes->total() }}</small>
                 </div>
-    
-                {{--  --}}
+        
+                <div class="pagination">
+                    {{ $routes->links() }}
+                </div>
     
                @foreach ($routes as $route)
                    
-               <a href="{{ route('route', ['id' => $route->id]) }}"
+               <a href="{{ route('route', ['id' => $route->id, $routes->getPageName() => $routes->currentPage()]) }}"
                 class="list-info @if ( $route->id == $rt->id ) active @endif">
     
                     <input type="checkbox" name="" id="select-list">
@@ -57,16 +59,7 @@
                 @endforeach
     
                 <div class="pagination">
-                    <ul class="pagenum">
-                        <li class="page-item arrow"><a href=""><span class="iconify" data-icon="ic:round-keyboard-double-arrow-left" data-width="25" data-height="25"></span></a></li>
-                        <li class="page-item num"><a href="">1</a></li>
-                        <li class="page-item num"><a href="">2</a></li>
-                        <li class="page-item num"><a href="">3</a></li>
-                        <li class="page-item num"><a href="">4</a></li>
-                        <li class="page-item num"><a href="">5</a></li>
-                        <li class="page-item num"><a href="">6</a></li>
-                        <li class="page-item arrow"><a href=""><span class="iconify" data-icon="ic:round-keyboard-double-arrow-right" data-width="25" data-height="25"></span></a></li>
-                    </ul>
+                    {{ $routes->links() }}
                 </div>
     
             </div>
@@ -78,23 +71,31 @@
 
         <div class="content-details">
 
+            <x-flash-message/>
+
             <div class="content-head">
 
                 <h2 class="text-details"> Route Details</h2>
                 
                 <div class="action">
     
-                    <i class='bx bxs-edit'></i>
                     <a onclick='Livewire.emit("openModal", "route.create")'><i class='bx bx-plus-circle' ></i></a>
-    
+                    <a onclick='Livewire.emit("openModal", "route.edit", {{ json_encode($rt) }})'><i class='bx bxs-edit'></i></i></a>
+                    {{-- <a href="{{ route('route.destroy', ['id' => $rt->id]) }}"><i class='bx bx-trash'></i></a> --}}
+                    <a onclick='Livewire.emit("openModal", "confirm", {{ json_encode(["id" => $rt->id, "routeName" => Route::currentRouteName()]) }})'><i class='bx bx-trash'></i></a>
                 </div>
     
             </div>
 
             <div class="content-body">
 
+
                 <div class="route-details">
 
+                    <div class="route-title">
+                        <p class="driver-lbl">Route Title</p>
+                        <small class="driver-txt">{{ $rt->routeTitle }}</small>
+                    </div>
 
                     <div class="route-no">
                         <p class="driver-lbl">Route Number</p>

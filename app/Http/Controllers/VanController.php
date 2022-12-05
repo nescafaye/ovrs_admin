@@ -23,7 +23,7 @@ class VanController extends Controller
     public function index(Request $rq)
     {
         $placeholder = 'Van';
-        $vans = Vehicle::all();
+        $vans = Vehicle::paginate(10)->withQueryString();
         $vhcl = Vehicle::find($rq->id);
 
         // dd($vans = $vhcl->routes()->get());
@@ -101,6 +101,55 @@ class VanController extends Controller
                 ->session()->flash('error', 'Failed to add vehicle.');
         }
                  
+    }
+
+    public function update(Request $rq)
+    {   
+    
+        // return redirect()->back();
+
+        $lastUpdated = Vehicle::orderBy('updated_at','DESC')->first();
+
+        $all = $rq->except('_token');
+        
+        $update = Vehicle::where('id', $rq->id)->update($all);
+
+
+        if ($update) {
+
+            return redirect()
+                ->route('van', ['id' => $lastUpdated])
+                ->with('success', 'Van updated successfully.');
+                // ->session()->flash('success', 'Driver added successfully.');
+        } 
+
+        else {
+
+            return redirect()
+                ->route('van', ['id' => $lastUpdated])
+                ->with('error', 'Van update failed.');
+           
+        }
+    }
+
+    
+    public function destroy(Request $rq) {
+
+        $deleted = Vehicle::destroy($rq->id);
+        $first = Vehicle::all()->first();
+
+        if ($deleted) {
+            
+            return redirect()
+                ->route('van', ['id' => $first->id])
+                // ->session()->flash('success', 'Driver added successfully.');
+                ->with('deleted', 'Van deleted.');
+        } 
+    
+        else {
+
+            return back()->with('error', 'Error');
+        }
     }
 
 }

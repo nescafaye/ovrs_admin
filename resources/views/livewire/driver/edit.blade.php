@@ -8,7 +8,7 @@
 
     <div class="modal-title">Edit driver</div>
 
-    <form action="{{ route('driver.update') }}" method="post">
+    <form action="{{ route('driver.update') }}" method="get">
         @csrf
 
         @livewire('driver.edit-validation',  ['driver' => $driver])

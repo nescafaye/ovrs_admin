@@ -25,23 +25,35 @@
         <div class="list">
 
             <div class="results">
-                <small>Showing results 1-50 of 250</small>
+                <small>Showing results {{ $vans->firstItem() }}-{{ $vans->lastItem() }} of {{ $vans->total() }}</small>
             </div>
-
-
+    
+            <div class="pagination">
+                {{ $vans->links() }}
+            </div>
 
             @foreach ($vans as $vh)
 
-            <a href="{{ route('van', ['id' => $vh->id]) }}"
+            <a href="{{ route('van', ['id' => $vh->id, $vans->getPageName() => $vans->currentPage()]) }}"
                 class="list-info @if ( $vh->id == $vhcl->id ) active @endif">
 
                 <input type="checkbox" name="" id="{{ $vh->id }}">
 
                 <label for="{{ $vh->id }}">
 
-                    <div class="label-img">
-                        <img src="{{ asset('assets/van-pic.png') }}" width=50 height="50" alt="">
-                    </div>
+                    @php
+                        $images = explode('|', $vh->vanImages);
+                    @endphp
+
+                    @foreach ($images as $vanImage)
+
+                        <div class="label-img">
+                            <img src="{{ asset('storage/images/'. $vanImage) }}" alt="">
+                        </div>
+
+                        @break
+
+                    @endforeach
 
                     <div class="label-txt">
                         <h4>{{$vh->brand}} {{ $vh->model }}</h4>
@@ -55,20 +67,7 @@
             @endforeach
 
             <div class="pagination">
-                <ul class="pagenum">
-                    <li class="page-item arrow"><a href=""><span class="iconify"
-                                data-icon="ic:round-keyboard-double-arrow-left" data-width="25"
-                                data-height="25"></span></a></li>
-                    <li class="page-item num"><a href="">1</a></li>
-                    <li class="page-item num"><a href="">2</a></li>
-                    <li class="page-item num"><a href="">3</a></li>
-                    <li class="page-item num"><a href="">4</a></li>
-                    <li class="page-item num"><a href="">5</a></li>
-                    <li class="page-item num"><a href="">6</a></li>
-                    <li class="page-item arrow"><a href=""><span class="iconify"
-                                data-icon="ic:round-keyboard-double-arrow-right" data-width="25"
-                                data-height="25"></span></a></li>
-                </ul>
+                {{ $vans->links() }}
             </div>
 
         </div>
@@ -80,8 +79,7 @@
 
     <div class="content-details">
 
-        {{-- view details --}}
-
+        <x-flash-message/>
 
         <div class="content-head">
 
@@ -89,8 +87,12 @@
 
             <div class="action">
 
-                <a href=""><i class='bx bxs-edit'></i></a>
                 <a onclick='Livewire.emit("openModal", "van.create")'><i class='bx bx-plus-circle'></i></a>
+                <a onclick='Livewire.emit("openModal", "van.edit", {{ json_encode($vhcl) }})'><i class='bx bxs-edit'></i></a>
+                {{-- <a href="{{ route('van.destroy', ['id' => $vhcl->id]) }}"><i class='bx bx-trash'></i></a> --}}
+                <a onclick='Livewire.emit("openModal", "confirm", {{ json_encode(["id" => $vhcl->id, "routeName" => Route::currentRouteName()]) }})'><i class='bx bx-trash'></i></a>
+
+
             </div>
 
         </div>
@@ -137,10 +139,12 @@
 
                     <div class="info-price">
                         <small class="driver-txt">Assigned Driver</small>
+
                         @foreach ($assigned as $ass)
                         <p class="driver-lbl link"><a href="{{ route('driver', ['id' => $ass->dvr_id]) }}">{{
                                 $ass->fname }} {{ $ass->lname }}</a></p>
                         @endforeach
+
                     </div>
 
                     <div class="info-num">

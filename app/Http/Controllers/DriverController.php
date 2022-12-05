@@ -27,9 +27,9 @@ class DriverController extends Controller
 
     public function index(Request $rq)
     {
-        $drivers = Driver::all();
+        $drivers = Driver::paginate(10)->withQueryString();
         $dvr = Driver::find($rq->id);
-        $count = Driver::count();
+        $count = Driver::count(); 
 
         // $assigned = $dvr->assignedVan;
 
@@ -80,50 +80,24 @@ class DriverController extends Controller
         
             
     }
-
-    private function resetInput()
-    {
-        $this->fname = null;
-        $this->lname = null;
-        $this->username = null;
-        $this->email = null;
-        $this->gender = null;
-        $this->phone = null;
-        $this->accName = null;
-        $this->accNumber = null;
-    }
-
   
     public function update(Request $rq)
     {   
     
         // return redirect()->back();
 
-        $all = request()->validate([
-            'fname' => 'nullable',
-            'lname' => 'nullable',
-            'username' => 'nullable',
-            'email' => 'nullable',
-            'gender' => 'nullable|in:Female,Male,Others',
-            'phone' => 'nullable',
-            'profilePic' => 'nullable',
-            'password' => 'nullable',
-            'password_confirmation',
-            'accName' => 'nullable',
-            'accNumber' => 'nullable'
-        ]);
+        $lastUpdated = Driver::orderBy('updated_at','DESC')->first();
 
-        
-
-        $id = Driver::find($rq->input('dvr_id'), ['dvr_id']);
+        $all = $rq->except(['_token', 'password_confirmation']);
         $all['password'] = Hash::make(request()->password);
-        $update = Driver::where('dvr_id', $id)->update($all);
-        // // $latest = Driver::orderBy('updated_at','DESC')->first();
+        
+        $update = Driver::where('dvr_id', $rq->dvr_id)->update($all);
+
 
         if ($update) {
 
             return redirect()
-                ->route('driver', ['id' => $id])
+                ->route('driver', ['id' => $lastUpdated])
                 ->with('success', 'Driver updated successfully.');
                 // ->session()->flash('success', 'Driver added successfully.');
 
@@ -131,30 +105,41 @@ class DriverController extends Controller
 
         else {
 
-            dd(Driver::find($rq->input('dvr_id')));
-            // return redirect()->to('http://heera.it');
+            dd($update);
+            return redirect()
+                ->route('driver', ['id' => $lastUpdated])
+                ->with('error', 'Driver update failed.');
+           
         }
 
         // $this->resetInput();
     }
+
+    public function destroy(Request $rq) {
+
+        $deleted = Driver::destroy($rq->id);
+        $first = Driver::all()->first();
+
+        if ($deleted) {
+            
+            return redirect()
+                ->route('driver', ['id' => $first->dvr_id])
+                // ->session()->flash('success', 'Driver added successfully.');
+                ->with('deleted', 'Driver deleted.');
+        } 
+    
+        else {
+
+            return back()->with('error', 'Error');
+        }
+    }
+
+
 
 
     // public function update()
     //  {
     //     dd(Driver::find($this->$driver->dvr_id));
     //  }
-
-    // public function destroy(Request $rq) {
-
-    //     $dvr = Driver::find($rq->id);
-    //     Driver::where('dvr_id', $dvr)->delete();
-
-    //     $drivers = Driver::all();
-    //     $dvr = Driver::find($rq->id);
-    //     $count = Driver::count();
-
-    //     return view('driver.index', compact('drivers','dvr', 'count'))
-    //             ->with('success','Driver deleted successfully.');
-    // }
 
 }

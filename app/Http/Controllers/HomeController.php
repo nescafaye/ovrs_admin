@@ -27,4 +27,5 @@ class HomeController extends Controller
         $admin = Admin::where('admin_id', auth()->id())->get();
         return view('home', compact('admin'));
     }
+    
 }

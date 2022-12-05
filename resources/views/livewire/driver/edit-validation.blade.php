@@ -122,7 +122,7 @@
     <hr class="hr-2">
 
     <div class="modal-button">
-        <button wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</button>
+        <a wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</a>
         <button type="submit" class="add-driver">{{__('Save')}}</button>
     </div>
 

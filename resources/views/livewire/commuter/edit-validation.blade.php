@@ -2,6 +2,8 @@
 
     <hr class="hr-1">
 
+    <input class="textbox fn" value="{{ old('comm_id', $commuter->comm_id) }}" name="comm_id" type="hidden" placeholder="{{ __('ID') }}" required/>
+
     <div class="first-name dvr">
 
         <label for="fname">First Name</label>
@@ -118,7 +120,7 @@
     <hr class="hr-2">
 
     <div class="modal-button">
-        <button wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</button>
+        <a wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</a>
         <button type="submit" class="add-driver">{{__('Save')}}</button>
     </div>
 

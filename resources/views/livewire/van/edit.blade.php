@@ -8,10 +8,10 @@
 
     <div class="modal-title">Edit Van</div>
 
-    <form action="{{ route('van.edit')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('van.update')}}" method="get" enctype="multipart/form-data">
         @csrf
 
-        @livewire('van.create-validation')
+        @livewire('van.edit-validation', ['van' => $van])
 
     </form>
     

@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Http\Livewire\Van;
+namespace App\Http\Livewire\Route;
 
 use LivewireUI\Modal\ModalComponent;
-use App\Models\Vehicle;
+use App\Models\Route;
 
 class Edit extends ModalComponent
 {
 
-    public $van;
+    public $route;
 
     public function mount($id)
     {
-        $this->van = Vehicle::findOrFail($id);
+        $this->route = Route::findOrFail($id);
         
     }
 
     public function render()
     {
-        return view('livewire.van.edit');
+        return view('livewire.route.edit');
     }
-
 
     public static function closeModalOnEscape(): bool
     {

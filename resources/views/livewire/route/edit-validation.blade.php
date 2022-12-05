@@ -1,8 +1,10 @@
-<div class="form-container">
+<div class="form-container route-form">
 
     <hr class="hr-1">
 
-    {{-- <div class="first-name dvr">
+    <input class="textbox fn" value="{{ old('id', $route->id) }}" name="id" type="hidden" placeholder="{{ __('ID') }}" required/>
+
+    <div class="first-name dvr">
 
         <label for="routeNo">Route Number</label>
         <input class="textbox fn" wire:model.lazy="routeNo" id="routeNo" name="routeNo" type="text" placeholder="{{ __('Route Number') }}" required>
@@ -12,9 +14,9 @@
             {{ $message }}
         </span>
         @enderror
-    </div> --}}
+    </div>
 
-    <div class="first-name dvr rt">
+    <div class="last-name dvr">
 
         <label for="routeTitle">Route Title</label>
         <input class="textbox ln" wire:model.lazy="routeTitle" id="routeTitle" name="routeTitle" type="text" placeholder="{{ __('Route Title') }}" required>
@@ -26,7 +28,7 @@
         @enderror
     </div>
 
-    <div class="last-name dvr">
+    <div class="user-name dvr">
 
         <label for="origin">Origin</label>
         <input class="textbox" wire:model.lazy="origin" id="origin" name="origin" type="text" placeholder="{{ __('Origin') }}" required>
@@ -37,7 +39,7 @@
         @enderror
     </div>
 
-    <div class="user-name dvr">
+    <div class="e-mail dvr">
 
         <label for="destination">Destination</label>
         <input class="textbox" wire:model.lazy="destination" id="destination" name="destination" type="text" placeholder="{{ __('Destination') }}" required>
@@ -51,8 +53,8 @@
     <hr class="hr-2">
 
     <div class="modal-button">
-        <button wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</button>
-        <button type="submit" class="add-driver">{{__('Add')}}</button>
+        <a wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</a>
+        <button type="submit" class="add-driver">{{__('Save')}}</button>
     </div>
 
 </div>

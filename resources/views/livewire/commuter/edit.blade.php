@@ -8,7 +8,7 @@
 
     <div class="modal-title">Edit commuter</div>
 
-    <form action="{{ route('commuter.edit')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('commuter.edit')}}" method="get" enctype="multipart/form-data">
         @csrf
 
         @livewire('commuter.edit-validation',  ['commuter' => $commuter])

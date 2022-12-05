@@ -142,6 +142,7 @@ $line-height-base: 1.6;
     color: var(--error-txt);
     font-size: var(--smaller-font-size);
     font-weight: var(--font-medium);
+    line-height: -10px !important;
     
   }
   
@@ -366,7 +367,7 @@ $line-height-base: 1.6;
     --usertype-dropdown: #696969;
     --sort-color: #66B2B2;
     --terms: #60B0B0;
-    --error-msg: rgb(230, 189, 189);
+    --error-msg: rgb(255, 190, 190);
     --error-txt: #dc3444;
     --dropdown-open: transparent;
   

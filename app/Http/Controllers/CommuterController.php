@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commuter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CommuterController extends Controller
 {
@@ -21,7 +22,7 @@ class CommuterController extends Controller
 
     public function index(Request $rq)
     {   $placeholder = 'Search Commuter';
-        $commuters = Commuter::all();
+        $commuters = Commuter::paginate(10)->withQueryString();
 
         $c = Commuter::find($rq->id);
         $count = Commuter::count();
@@ -29,40 +30,34 @@ class CommuterController extends Controller
         return view('commuter.commuter', compact('placeholder', 'commuters', 'c', 'count'));
     }
 
-    // public function show($comm_id)
-    // {
-    //     $comm = Commuter::first($comm_id);
-    //     return view('display', compact('commuters', 'comm'));
-    // }
 
-    public function update(Request $request)
+    public function update(Request $rq)
     {
-        $all = $request->validate([
-            'fname' => 'required|alpha',
-            'lname' => 'required|alpha',
-            'username' => 'min:6|required|unique:commuters|string',
-            'email' => 'required|unique:commuters|email',
-            'gender' => 'nullable|in:Female,Male,Others',
-            'phone' => 'min:12|required|unique:commuters|numeric',
-            'profilePic' => 'nullable|image',
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
-            'accName' => 'nullable|alpha',
-            'accNumber' => 'min:12|nullable|numeric'
-        ]);
+        $all = $rq->except(['_token','password_confirmation']);
 
-        $comm = Commuter::find($request->id);
-        $update = Commuter::where('comm_id', $comm)->update($all);
+        $lastUpdated = Commuter::orderBy('updated_at','DESC')->first();
+
+        $all['password'] = Hash::make(request()->password);
         
-        if  ($update)
-            {
-                // return redirect()->back()->with('success','Changes has been saved successfully!');
-                return redirect()->back()->session()->flash('success','Changes has been saved successfully!');
-            }
-        else
-            {
-                return redirect()->back()->session()->flash('error','Changes failed to save');
-            }
+        $update = Commuter::where('comm_id', $rq->comm_id)->update($all);
+
+        // $this->resetInput();
+        
+        if ($update) {
+
+            return redirect()
+                ->route('commuter', ['id' => $lastUpdated])
+                ->with('success', 'Changes have been saved.');
+        } 
+
+        else {
+
+            return redirect()
+                ->route('commuter', ['id' => $lastUpdated])
+                ->with('error', 'Failed to update changes.');
+           
+        }
+            
     }
     
 }
