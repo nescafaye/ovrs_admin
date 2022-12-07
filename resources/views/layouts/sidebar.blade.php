@@ -59,6 +59,7 @@
 
     
     @livewireScripts
+    @livewireAssets
     
     
 </body>

@@ -88,14 +88,14 @@
   closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
     menuBtnChange();//calling the function(optional)
+
+    if (typeof(Storage) !== "undefined") {
+        // Save the state of the sidebar as "open"
+        localStorage.setItem(sidebar, "open");
+    }
   });
 
-  // searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-  //   sidebar.classList.toggle("open");
-  //   menuBtnChange(); //calling the function(optional)
-  // });
-
-  // following are the code to change sidebar button(optional)
+  // following are the code to change sidebar button (optional)
   function menuBtnChange() {
    if(sidebar.classList.contains("open")){
      closeBtn.classList.replace("bxs-arrow-to-right", "bxs-arrow-to-left");//replacing the iocns class

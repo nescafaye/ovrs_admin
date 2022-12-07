@@ -135,8 +135,8 @@
     <div class="van-image vhl">
 
         <label for="van-image">Upload photo</label>
-        <input type="file" multiple name="vanImages[]" id="van-image">
-
+        <input type="file" multiple name="vanImages" id="van-image">
+       
         @error('vanImages')
         <span class="error-validation" role="alert">
             {{ $message }}

@@ -28,14 +28,42 @@
 
         <div class="sticky-profile">
 
-            <span class="iconify notif" data-icon="ic:baseline-notifications-none" data-width="26" data-height="26"></span>
+            <details class="dropdown">
+                <summary class="notifications">
+                    <span class="iconify notif" data-icon="ic:baseline-notifications-none" data-width="26" data-height="26"></span>
+                </summary>
+
+                <div class="notif-body">
+                    <div class="notif-title">
+                        Notifications
+                    </div>
+
+                    <hr>
+
+                    <div class="notif-list">
+                        <iconify-icon icon="mdi:information-outline" class="notif-icon" width="30" height="30"></iconify-icon>
+                        <div class="notif-text">No notifications yet</div>
+                        <div class="notif-subtext">When you get notifications, they'll show up here</div>
+                    </div>
+                </div>
+
+            </details>
 
             @foreach($profile as $p)
 
-            <div class="profile">
-                <span class="name"> {{ $p->username }} </span>
-                <img class= "prof-pic" src="{{ asset('assets/prof-pic.png') }}" alt="">
-            </div>
+            <details class="dropdown">
+
+                <summary class="profile">
+                    <span class="name"> {{ $p->username }} </span>
+                    <img class= "prof-pic" src="{{ asset('assets/prof-pic.png') }}" alt="">
+                </summary>
+
+                <ul class="options">
+                    <li class="option-item"><a href="{{ route('settings') }}"><i class='bx bxs-cog'></i>Settings</a></li>
+                    <li class="option-item logout"><a href="{{ route('logout') }}"><i class='bx bx-log-out' id="log_out" ></i>Logout</a></li>
+                </ul>
+
+            </details>
 
             @endforeach
     
@@ -45,4 +73,20 @@
 
 
 </body>
+
+<script>
+
+    // close dropdown when outside is clicked
+
+    var details = [...document.querySelectorAll('details')];
+    document.addEventListener('click', function(e) {
+        if (!details.some(f => f.contains(e.target))) {
+            details.forEach(f => f.removeAttribute('open'));
+        } else {
+            details.forEach(f => !f.contains(e.target) ? f.removeAttribute('open') : '');
+        }
+    })
+    
+</script>
+
 </html>

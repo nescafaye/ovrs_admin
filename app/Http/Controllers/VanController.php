@@ -23,13 +23,25 @@ class VanController extends Controller
     public function index(Request $rq)
     {
         $placeholder = 'Van';
-        $vans = Vehicle::paginate(10)->withQueryString();
+        $vans = Vehicle::paginate(1)->withQueryString();
         $vhcl = Vehicle::find($rq->id);
+        $count = Vehicle::count();
+        $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
 
         // dd($vans = $vhcl->routes()->get());
+
+        return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count', 'assigned'));
         
-        $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
-        return view('van.index',compact('placeholder', 'vans', 'vhcl', 'assigned'));
+
+        if ($count > 1) {
+
+            $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
+            return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count', 'assigned'));
+        }
+
+        else if ($count < 1) {
+            return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count'));
+        }
     }
 
     public function store(Request $request)

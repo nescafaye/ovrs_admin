@@ -5,44 +5,12 @@
 
 .pagination {
 
-    .pagenum {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-
-        .page-item {
-            list-style-type: none;
-            background: #66B2B2;
-            border-radius: 8px;
-            padding: 4px;
-            height: 34px;
-
-            &.arrow {
-                width: 40px;
-                text-align: center;
-            }
-
-            &.num {
-                width: 30px;
-                text-align: center;
-            }
-
-            &:hover {
-                background: #B2D8D8;
-            }
-
-
-            a {
-                text-decoration: none;
-                color: #fff;
-                padding: 5px;
-            }
-
-        }
+    .loading {
+        position: relative;
+        left: 45%;
+        color: #6C757D;
     }
+    
 }
 
 .list-container {
@@ -87,7 +55,7 @@
 
     }
 
-    .select-all {
+    .select {
         display: flex;
         flex-direction: row;
         justify-content: space-between;

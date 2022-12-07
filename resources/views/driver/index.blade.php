@@ -3,65 +3,13 @@
 
 @section('content')
 
+@if ($count == 0)
 
-<div class="list-container">
+    <x-no-record/>
     
+@else
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search Driver" id="search" autocomplete="off">
-        <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-    </div>
-
-    <div class="select-all">
-
-        <div class="checkbox">
-            <input type="checkbox" name="" id="select">
-            <label for="select">Select all</label>
-        </div>
-
-        <span class="iconify" data-icon="charm:menu-kebab"></span>
-
-    </div>
-
-    <div class="list">
-
-        <div class="results">
-            <small>Showing results {{ $drivers->firstItem() }}-{{ $drivers->lastItem() }} of {{ $drivers->total() }}</small>
-        </div>
-
-        <div class="pagination">
-            {{ $drivers->links() }}
-        </div>
-
-        @foreach ($drivers as $driver)
-
-        <a href="{{ route('driver', ['id' => $driver->dvr_id, $drivers->getPageName() => $drivers->currentPage()]) }}" class="list-info  
-            @if ( $driver->dvr_id == $dvr->dvr_id ) active @endif">
-
-            <input type="checkbox" name="" id="{{ $driver->username }}">
-
-            <label for="{{ $driver->dvr_un }}">
-
-                <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
-
-                <div class="label-txt" id="{{ $driver->dvr_id }}">
-                    <h4>{{ $driver->fname}} {{ $driver->lname}}</h4>
-                    <p>{{ $driver->email }}</p>
-                </div>
-
-            </label>
-
-        </a>
-
-        @endforeach
-
-        <div class="pagination">
-            {{ $drivers->links() }}
-        </div>
-
-    </div>
-
-</div>
+@livewire('driver.search-list', ['dvr' => $dvr, 'routeName' => Route::currentRouteName()])
 
 @include('layouts.profile')
 
@@ -171,5 +119,7 @@
     </div>
 
 </div>
+
+@endif
 
 @endsection

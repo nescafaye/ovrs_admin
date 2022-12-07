@@ -173,6 +173,10 @@ $line-height-base: 1.6;
     max-width: 100%;
     height: auto;
   }
+
+  summary {
+    list-style: none;
+  }
   
   /*========== CLASS CSS ==========*/
   .section{

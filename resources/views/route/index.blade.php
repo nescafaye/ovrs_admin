@@ -13,15 +13,15 @@
                 <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
             </div>
     
-            <div class="select-all">
-    
+            <div class="select">
+
                 <div class="checkbox">
                     <input type="checkbox" name="" id="select">
                     <label for="select">Select all</label>
                 </div>
-    
-                <span class="iconify" data-icon="charm:menu-kebab"></span>
-    
+        
+                <x-option/>
+        
             </div>
     
             <div class="list">
