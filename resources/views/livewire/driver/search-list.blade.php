@@ -19,9 +19,9 @@
 
     <div class="list">
 
-        {{-- <div class="results">
+        <div class="results">
             <small>Showing results {{ $drivers->firstItem() }}-{{ $drivers->lastItem() }} of {{ $drivers->total() }}</small>
-        </div> --}}
+        </div>
 
         <div class="pagination">
             <div wire:loading class="loading"><iconify-icon icon="eos-icons:loading" width="30" height="30"></iconify-icon></div>
@@ -34,7 +34,7 @@
 
             @foreach ($drivers as $driver)
 
-            <a href="{{ route('driver', ['id' => $driver->dvr_id, 'search' => $search]) }}" class="list-info  
+            <a href="{{ route('driver', ['id' => $driver->dvr_id, $drivers->getPageName() => $drivers->currentPage(), 'search' => $search]) }}" class="list-info  
                 @if ( $driver->dvr_id == $dvr->dvr_id ) active @endif">
     
                 <input type="checkbox" name="" id="{{ $driver->username }}">
@@ -55,14 +55,15 @@
             @endforeach
                 
             @break
+            
 
             @default
                 
         @endswitch
 
-        {{-- <div class="pagination">
-            {{ $drivers->links() }}
-        </div> --}}
+        <div class="pagination">
+            {{-- {{ $drivers->links('pagination::simple-tailwind') }} --}}
+        </div>
 
     </div>
 

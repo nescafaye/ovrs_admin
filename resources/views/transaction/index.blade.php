@@ -10,64 +10,7 @@
 
     <div class="transaction">
 
-        <div class="list-container">
-
-            <div class="search-bar">
-                <input type="text" placeholder="Search {{ $placeholder }}" id="search" autocomplete="off">
-                <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-            </div>
-    
-            <div class="select">
-
-                <div class="checkbox">
-                    <input type="checkbox" name="" id="select">
-                    <label for="select">Select all</label>
-                </div>
-        
-                <x-option/>
-        
-            </div>
-    
-            <div class="list">
-    
-                <div class="results">
-                    <small>Showing results {{ $transactions->firstItem() }}-{{ $transactions->lastItem() }} of {{ $transactions->total() }}</small>
-                </div>
-        
-                <div class="pagination">
-                    {{ $transactions->links() }}
-                </div>
-                
-                @foreach ($transactions as $transaction)
-
-                <a href="{{ route('transaction', ['id' => $transaction->id, $transactions->getPageName() => $transactions->currentPage()]) }}" class="list-info  
-                    @if ( $transaction->id == $transact->id ) active @endif">
-        
-                    <input type="checkbox" name="" id="{{ $transaction->transactionNo }}">
-        
-                    <label for="{{ $transaction->transactionNo }}">
-        
-                        <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
-        
-                        <div class="label-txt">
-                            {{-- routeNo --}}
-                            <h4>{{ $transaction->commuterName}}</h4> 
-                            <p>{{ $transaction->transactionNo }}</p>
-                        </div>
-        
-                    </label>
-        
-                </a>
-        
-                @endforeach
-
-                <div class="pagination">
-                    {{ $transactions->links() }}
-                </div>
-    
-            </div>
-
-        </div>
+        @livewire('search-list', ['transact' => $transact, 'routeName' => Route::currentRouteName()])
 
         @include('layouts.profile')
 
@@ -93,7 +36,7 @@
                     </div>
 
                     <div class="transact-title">
-                        <p class="transact-route">Piat to Tuguegarao</p>
+                        <p class="transact-route">{{ $transact->route }}</p>
                         <small class="transact-time">{{ $transact->transactionTime }}</small>
                     </div>
 
@@ -156,14 +99,14 @@
                             </div>
 
 
-                            <div class="other-pass">
+                            {{-- <div class="other-pass">
                                 <p class="driver-lbl">Other Passengers</p>
                                 <ul class="others">
                                     <li><small class="driver-txt">Faye Diane Talay (Adult, 20, F)</small></li>
                                     <li><small class="driver-txt">Graziel Sorita (Adult, 21, F)</small></li>
                                     <li><small class="driver-txt">Kathleen Jean Viernes (Adult, 21, F)</small></li>
                                 </ul>
-                            </div>
+                            </div> --}}
 
                             <div class="contact-pass">
                                 <p class="driver-lbl">Contact Information</p>

@@ -37,7 +37,11 @@
     'resources/sass/route.scss',
     'resources/sass/settings.scss', 
     'resources/sass/no-record.scss',
-    'resources/js/app.js'
+    'resources/js/app.js',
+
+    //driver
+
+    'resources/sass/driver-admin/dashboard.scss',
     
     ])
     
@@ -59,7 +63,7 @@
 
     
     @livewireScripts
-    @livewireAssets
+    {{-- @livewireAssets --}}
     
     
 </body>

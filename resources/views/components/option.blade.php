@@ -6,11 +6,6 @@
 
   .options {
     z-index: 999;
-
-    .option-item {
-      color: black;
-    }
-    
   }
 
 </style>

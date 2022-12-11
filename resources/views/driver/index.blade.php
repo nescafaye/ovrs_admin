@@ -9,7 +9,7 @@
     
 @else
 
-@livewire('driver.search-list', ['dvr' => $dvr, 'routeName' => Route::currentRouteName()])
+@livewire('search-list', ['dvr' => $dvr, 'routeName' => Route::currentRouteName()])
 
 @include('layouts.profile')
 
@@ -87,9 +87,9 @@
                         <p class="driver-lbl">Gender</p>
                         <small class="driver-txt">{{ $dvr->gender }} @empty($dvr->gender) N/A @endempty</small>
 
-                        <p class="driver-lbl">Assigned Van</p>
+                        {{-- <p class="driver-lbl">Assigned Van</p>
 
-                        {{-- @foreach ($assigned as $ass)
+                        @foreach ($assigned as $ass)
                             <small class="driver-txt link">
                                 <a href="{{ route('van', ['id' => $ass->id]) }}">{{ $ass->brand }} {{ $ass->model }}</a>
                             </small>

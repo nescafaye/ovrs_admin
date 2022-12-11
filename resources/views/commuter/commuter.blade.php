@@ -8,64 +8,8 @@
     
 @else
 
-<div class="list-container">
+@livewire('search-list', ['comm' => $c, 'routeName' => Route::currentRouteName()])
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search Commuter" id="search" autocomplete="off">
-        <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-    </div>
-
-    <div class="select">
-
-        <div class="checkbox">
-            <input type="checkbox" name="" id="select">
-            <label for="select">Select all</label>
-        </div>
-
-        <x-option/>
-
-    </div>
-
-    <div class="list">
-
-        <div class="results">
-            <small>Showing results {{ $commuters->firstItem() }}-{{ $commuters->lastItem() }} of {{ $commuters->total() }}</small>
-        </div>
-
-        <div class="pagination">
-            {{ $commuters->links() }}
-        </div>
-
-        @foreach ($commuters as $commuter)
-
-        <a href="{{ route('commuter', ['id' => $commuter->comm_id, $commuters->getPageName() => $commuters->currentPage()]) }}"
-            class="list-info @if ( $commuter->comm_id == $c->comm_id ) active @endif">
-
-            <input type="checkbox" name="" id="{{ $commuter->comm_id }}">
-
-            <label for="{{ $commuter->comm_id }}">
-
-                <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
-
-                <div class="label-txt">
-                    <h4>{{$commuter->fname}} {{$commuter->lname}}</h4>
-                    <p>{{$commuter->email}}</p>
-                </div>
-
-            </label>
-
-        </a>
-
-        @endforeach
-
-        <div class="pagination">
-            {{ $commuters->links() }}
-        </div>
-
-    </div>
-
-
-</div>
 
 @include('layouts.profile')
 
@@ -126,6 +70,8 @@
                         <small class="driver-txt">{{ $c->email }}</small>
                         {{-- <p class="driver-lbl">Birthdate</p>
                         <small class="driver-txt">{{ $c->birthdate }}</small> --}}
+                        <p class="driver-lbl">Auth Type</p>
+                        <small class="driver-txt">{{ $c->auth_type }} @empty($c->auth_type) email @endempty</small>
 
                     </div>
 

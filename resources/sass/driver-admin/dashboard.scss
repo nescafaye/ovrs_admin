@@ -1,0 +1,209 @@
+@import '../app.scss';
+
+/*========== Dashboard ==========*/
+
+.driver-admin {
+
+}
+
+.recent-route-title {
+    font-size: calc(var(--h3-font-size) + 2px) !important;
+    margin: 20px 0;
+}
+
+/* Recent Route*/
+.recent-route-title,
+.seats-number,
+.passenger-number {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: var(--h4-font-size);
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: var(--payment-form);
+}
+
+.your-route-container,
+.vehicle-assigned-container,
+.taken-seats-container,
+.total-passengers-container {
+    background-color: #F3F3F3;
+    width: 310px;
+    height: 170px;
+    margin-right: var(--mb-3);
+    border-radius: 12px;
+}
+
+.vehicle-assigned-container {
+    width: 260px;
+}
+
+.taken-seats-container,
+.total-passengers-container {
+    width: 210px;
+}
+
+/*your route*/
+
+.dashboard-bx {
+    padding: var(--mb-3);
+}
+
+.route-details-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.vehicle-driver {
+    display: flex;
+    flex-direction: column;
+}
+
+.your-route-subtitle,
+.vehicle-assigned-subtitle,
+.seats-subtitle,
+.total-substitle {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #ABABAB;
+    margin-bottom: 15px;
+}
+
+.driver-route-title {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: var(--h3-font-size);
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: var(--payment-form);
+}
+
+.line {
+    margin-left: var(--mb-3);
+    margin-right: var(--mb-3);
+    color: #ABABAB;
+}
+
+/*vehicle assigned*/
+
+.vehicle-name,
+.vehicle-number {
+    font-size: var(--normal-font-size);
+    font-family: 'Poppins';
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--payment-form);
+}
+
+.vehicle-number {
+    color: #6C757D;
+    font-weight: 400;
+}
+
+/*seats taken*/
+.seats-number,
+.passenger-number {
+    font-size: var(--h1-font-size);
+}
+
+.view-button {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #008080;
+}
+
+.view-button:hover {
+    color: #66B2B2;
+}
+
+.view {
+    background: none;
+    color: inherit;
+    border: none;
+    float: right;
+    margin-top: var(--mb-4);
+}
+
+/* Route History */
+
+.styled-table {
+    width: 97%;
+}
+
+.history-route-title {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: calc(var(--h3-font-size) + 2px);
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: var(--payment-form);
+    margin: 30px 0 20px;
+}
+
+table {
+   border-collapse: separate;
+   border-spacing: 0 15px;
+   padding: 0 !important;
+}
+
+.table-header th {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #ABABAB;
+    padding: 20px 0;
+}
+
+tbody {
+
+    tr {
+
+        border-radius: 12px;
+        background-color: #f6f6f6;
+        box-shadow: #343a4022 2px 2px 8px 1px;
+        height: 80px;
+        text-align: center;
+
+    &:nth-child(even) {
+        background-color: #ececec;
+    }
+
+    td {
+
+        &:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        &:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+    }
+    
+}
+
+.view-button-table {
+    background: #B2D8D8;
+    border-radius: 8px;
+    border-style: none;
+    width: 160px;
+    height: 31.6px;
+    color: #343A40;
+}
+
+.view-button-table:hover {
+    background: #66B2B2;
+}
+
+.styled-table {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #343A40;
+    padding-left: var(--mb-5);
+}

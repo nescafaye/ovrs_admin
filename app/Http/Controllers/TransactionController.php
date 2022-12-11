@@ -29,7 +29,6 @@ class TransactionController extends Controller
 
         $dateNow = Carbon::today()->toDateString();
 
-        // return view('driver', compact('drivers'));
         return view('transaction.index', compact('placeholder', 'transactions', 'count', 'transact', 'dateNow'));
     }
 }

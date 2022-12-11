@@ -31,8 +31,6 @@ class DriverController extends Controller
         $dvr = Driver::find($rq->id);
         $count = Driver::count(); 
 
-        // $assigned = $dvr->assignedVan;
-
         return view('driver.index', compact('drivers', 'dvr', 'count'));
         
     }
@@ -76,9 +74,7 @@ class DriverController extends Controller
             return redirect()
                 ->route('driver')
                 ->session()->flash('error', 'Failed to add driver.');
-        }
-        
-            
+        }      
     }
   
     public function update(Request $rq)
@@ -97,7 +93,7 @@ class DriverController extends Controller
         if ($update) {
 
             return redirect()
-                ->route('driver', ['id' => $lastUpdated])
+                ->route('driver', ['id' => $rq->id])
                 ->with('success', 'Driver updated successfully.');
                 // ->session()->flash('success', 'Driver added successfully.');
 
@@ -105,9 +101,8 @@ class DriverController extends Controller
 
         else {
 
-            dd($update);
             return redirect()
-                ->route('driver', ['id' => $lastUpdated])
+                ->route('driver', ['id' => $rq->id])
                 ->with('error', 'Driver update failed.');
            
         }

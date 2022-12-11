@@ -10,76 +10,8 @@
 
 <div class="van">
 
-    <div class="list-container">
 
-        <div class="search-bar">
-            <input type="text" placeholder="Search {{ $placeholder }}" id="search" autocomplete="off">
-            <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-        </div>
-
-        <div class="select">
-
-            <div class="checkbox">
-                <input type="checkbox" name="" id="select">
-                <label for="select">Select all</label>
-            </div>
-    
-            <x-option/>
-    
-        </div>
-
-        <div class="list">
-
-            <div class="results">
-                <small>Showing results {{ $vans->firstItem() }}-{{ $vans->lastItem() }} of {{ $vans->total() }}</small>
-            </div>
-    
-            <div class="pagination">
-                {{ $vans->links() }}
-            </div>
-
-            @foreach ($vans as $vh)
-
-            <a href="{{ route('van', ['id' => $vh->id, $vans->getPageName() => $vans->currentPage()]) }}"
-                class="list-info @if ( $vh->id == $vhcl->id ) active @endif">
-
-                <input type="checkbox" name="" id="{{ $vh->id }}">
-
-                <label for="{{ $vh->id }}">
-
-                    @php
-                        $images = explode('|', $vh->vanImages);
-                    @endphp
-
-                    @foreach ($images as $vanImage)
-
-                        <div class="label-img">
-                            <img src="{{ asset('storage/images/'. $vanImage) }}" alt="">
-                        </div>
-
-                        @break
-
-                    @endforeach
-
-                    <div class="label-txt">
-                        <h4>{{$vh->brand}} {{ $vh->model }}</h4>
-                        <p>{{ $vh->plateNo }}</p>
-                    </div>
-
-                </label>
-
-            </a>
-
-            @endforeach
-
-            <div class="pagination">
-                {{ $vans->links() }}
-            </div>
-
-        </div>
-
-
-    </div>
+    @livewire('search-list', ['vhcl' => $vhcl, 'routeName' => Route::currentRouteName()])
 
     @include('layouts.profile')
 

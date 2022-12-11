@@ -76,7 +76,7 @@
     <div class="password dvr">
 
         <label for="pass">Password</label>
-        <input class="textbox"  wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}" required>
+        <input class="textbox"  wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}">
         @error('password')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -87,7 +87,7 @@
     <div class="password-confirm dvr">
 
         <label for="password_confirmation">Confirm Password</label>
-        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}" required>
+        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}">
         @error('password_confirmation')
         <span class="error-validation" role="alert">
             {{ $message }}

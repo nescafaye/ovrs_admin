@@ -12,6 +12,7 @@
       <input type="text" placeholder="Search...">
       <span class="tooltip">Search</span>
     </li> --}}
+
     <li>
       <a href="{{ route('home') }}" class="{{ (request()->is('home')) ? 'active' : '' }}">
         <i class='bx bxs-dashboard'></i>
@@ -48,12 +49,21 @@
     </a>
     <span class="tooltip">Transaction</span>
   </li>
+
   <li>
     <a href="{{ url('route/?id='.$route_id) }}" class=" routes {{ (request()->is('route')) ? 'active' : '' }}">
       <span class="iconify loc" data-icon="ci:location"></span>
       <span class="links_name">Route</span>
     </a>
     <span class="tooltip">Route</span>
+  </li>
+
+  <li>
+    <a href="#" class="">
+      <span class="iconify" data-icon="eos-icons:admin"></span>
+      <span class="links_name">Admin</span>
+    </a>
+    <span class="tooltip">Admin</span>
   </li>
   
   <li>
@@ -64,20 +74,13 @@
     <span class="tooltip">Settings</span>
   </li>
   
-  
-  {{-- <li>
-    <a href="#">
-      <i class='bx bx-cog' ></i>
-      <span class="links_name">Setting</span>
-    </a>
-    <span class="tooltip">Setting</span>
-  </li> --}}
-  <li class="profile">
+
+  {{-- <li class="profile">
       <div class="profile-details">
-        
+        Logout
       </div>
       <a href="{{ route('logout') }}"><i class='bx bx-log-out' id="log_out" ></i></a>
-  </li>
+  </li> --}}
   </ul>
 </div>
 

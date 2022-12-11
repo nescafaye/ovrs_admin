@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Transaction::factory(2)->create();
+        $this->call(SeatSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

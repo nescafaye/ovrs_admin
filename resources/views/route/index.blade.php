@@ -6,66 +6,7 @@
 
     <div class="route">
 
-        <div class="list-container">
-
-            <div class="search-bar">
-                <input type="text" placeholder="Search {{ $placeholder }}" id="search" autocomplete="off">
-                <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-            </div>
-    
-            <div class="select">
-
-                <div class="checkbox">
-                    <input type="checkbox" name="" id="select">
-                    <label for="select">Select all</label>
-                </div>
-        
-                <x-option/>
-        
-            </div>
-    
-            <div class="list">
-    
-                <div class="results">
-                    <small>Showing results {{ $routes->firstItem() }}-{{ $routes->lastItem() }} of {{ $routes->total() }}</small>
-                </div>
-        
-                <div class="pagination">
-                    {{ $routes->links() }}
-                </div>
-    
-               @foreach ($routes as $route)
-                   
-               <a href="{{ route('route', ['id' => $route->id, $routes->getPageName() => $routes->currentPage()]) }}"
-                class="list-info @if ( $route->id == $rt->id ) active @endif">
-    
-                    <input type="checkbox" name="" id="select-list">
-    
-                    <label for="select-list">
-                        
-                        {{-- <div class="label-img">
-                            <img src="{{ asset('assets/van-pic.png') }}" width=50 height="50" alt="">
-                        </div> --}}
-                    
-                        <div class="label-txt">
-                            <h4>{{ $route->routeTitle }}</h4>
-                            <p>{{ $route->routeNo }}</p>
-                        </div>
-    
-                    </label>
-    
-                </a>
-    
-                @endforeach
-    
-                <div class="pagination">
-                    {{ $routes->links() }}
-                </div>
-    
-            </div>
-    
-    
-        </div>
+        @livewire('search-list', ['rt' => $rt, 'routeName' => Route::currentRouteName()])
 
         @include('layouts.profile')
 
@@ -187,7 +128,7 @@
                                 <td>{{ $trip->plateNo }}</td>
                                 <td>{{ $trip->pivot->departureDate }}</td>
                                 <td>{{ $trip->pivot->departureTime }}</td>
-                                <td>{{ $trip->pivot->returnDate }} @empty($route->pivot->returnDate) None @endempty </td>
+                                <td>{{ $trip->pivot->returnDate }} @if ($trip->pivot->returnDate == null) None @endif </td>
                                 <td>{{ $trip->pivot->fare }}</td>
                                 
                                 {{-- <td>B{{$i+1}}</td>

@@ -17,14 +17,17 @@ return new class extends Migration
             $table->id();
             $table->string('transactionNo')->unique();
 
-            // $table->foreignId('commuterId')
-            // ->constrained('commuters','comm_id')
-            // ->onUpdate('cascade')
-            // ->onDelete('cascade');
+            $table->foreignId('commuterId')
+            ->constrained('commuters','comm_id')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
 
             $table->string('commuterName');
-
+            $table->string('transactionType');
+            $table->string('contactEmail');
+            $table->string('contactNo');
             $table->string('seatsTaken');
+            $table->string('routeTaken');
             $table->double('totalAmount');
             $table->dateTime('departureDate');
             $table->dateTime('returnDate')->nullable();
