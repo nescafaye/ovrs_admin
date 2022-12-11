@@ -71,3 +71,10 @@ Route::get('/home/driver', [DriverHomeController::class, 'index'])->name('driver
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('');
 });
+
+
+Route::get('/welcome2', function () {
+    return view('welcome2');
+});
+Route::get('/send', [App\Http\Controllers\SendMessageController::class, 'index'])->name('send');
+Route::post('/postMessage', [App\Http\Controllers\SendMessageController::class, 'sendMessage'])->name('postMessage');
