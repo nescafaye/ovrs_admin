@@ -35,6 +35,7 @@ class Commuter extends Authenticatable
         'profilePic',
         'accNumber',
         'accName',
+        'auth_type'
     ];
 
     protected $hidden = [

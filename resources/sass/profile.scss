@@ -2,16 +2,15 @@
 @import 'variables';
 
 .profile-container {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     width: 18%;
+    z-index: 2;
 }
 
 .sticky-profile {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    
     z-index: 999;
     display: flex;
     flex-direction: row;
@@ -19,7 +18,7 @@
     align-items: center;
     height: 78px;
     width: 100%;
-    background: #fff;
+    background: inherit;
 
     .iconify {
         color: #8c8c8c;
@@ -43,6 +42,83 @@
 
         .name {
             font-size: 15px;
+        }
+    }
+}
+
+/* Dropdown */
+
+summary {
+    list-style: none;
+  }
+
+
+.options, .notif-body {
+    position: absolute;
+    background: #fcfcfc;
+    z-index: 1;
+    box-shadow: 1px 1px 8px 3px rgba(187, 187, 187, 0.297);
+    border-radius: 6px;
+    transition: all 0.3s;
+    margin-top: 12px;
+    width: 170px;
+
+    .option-item {
+        font-size: 14px;
+
+        &:hover {
+          background: rgb(244, 244, 244);
+
+        }
+
+        a {
+            display: block;
+            padding: 8px 16px;
+
+            .bx {
+                font-size: 16px;
+                position: relative;
+                top: 2px;
+                margin-right: 4px;
+            }
+        }
+    }   
+}
+
+.notif-body {
+    width: 350px;
+    min-height: 170px;
+    max-height: 300px;
+    min-width: 250px;
+    max-width: 400px;
+    right: 210px;
+    overflow-y: scroll;
+
+    .notif-title {
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+   }
+
+    .notif-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        text-align: center;
+
+        .notif-icon {
+            color: #8c8c8c;
+        }
+
+        .notif-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .notif-subtext {
+            font-size: 13px;
+            color: #8c8c8c;
         }
     }
 }

@@ -6,11 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "calebporzio/livewire": "^2.10",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
+        "league/flysystem-aws-s3-v3": "~3.0",
         "livewire/livewire": "^2.10",
         "pusher/pusher-php-server": "^7.2",
         "wire-elements/modal": "^1.0"

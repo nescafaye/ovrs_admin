@@ -76,7 +76,7 @@
     <div class="password dvr">
 
         <label for="pass">Password</label>
-        <input class="textbox"  wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}" required>
+        <input class="textbox"  wire:model.lazy="password" id="pass" name="password" type="password" placeholder="{{ __('Password') }}">
         @error('password')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -87,7 +87,7 @@
     <div class="password-confirm dvr">
 
         <label for="password_confirmation">Confirm Password</label>
-        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}" required>
+        <input class="textbox" wire:model.lazy="password_confirmation" id="password_confirmation" name="password_confirmation" type="password" placeholder="{{ __('Password') }}">
         @error('password_confirmation')
         <span class="error-validation" role="alert">
             {{ $message }}
@@ -122,7 +122,7 @@
     <hr class="hr-2">
 
     <div class="modal-button">
-        <button wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</button>
+        <a wire:click="$emit('closeModal')" class="cancel">{{__('Cancel')}}</a>
         <button type="submit" class="add-driver">{{__('Save')}}</button>
     </div>
 

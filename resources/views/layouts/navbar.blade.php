@@ -31,8 +31,8 @@
         <input type="text" placeholder="Search transaction, driver, commuter, van" id="search" autocomplete="off">
 
         <div class="add-btns">
-            <button class="btn-add"><a href="" class="add add-driver">Add driver</a></button>
-            <button class="btn-add"><a href="" class="add add-van">Add van</a></button>
+            <button class="btn-add"><a class="add add-driver" onclick='Livewire.emit("openModal", "driver.create")'>Add driver</a></button>
+            <button class="btn-add"><a class="add add-van" onclick='Livewire.emit("openModal", "van.create")'>Add van</a></button>
         </div>
 
     </div>

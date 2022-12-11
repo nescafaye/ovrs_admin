@@ -5,44 +5,12 @@
 
 .pagination {
 
-    .pagenum {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
-
-        .page-item {
-            list-style-type: none;
-            background: #66B2B2;
-            border-radius: 8px;
-            padding: 4px;
-            height: 34px;
-
-            &.arrow {
-                width: 40px;
-                text-align: center;
-            }
-
-            &.num {
-                width: 30px;
-                text-align: center;
-            }
-
-            &:hover {
-                background: #B2D8D8;
-            }
-
-
-            a {
-                text-decoration: none;
-                color: #fff;
-                padding: 5px;
-            }
-
-        }
+    .loading {
+        position: relative;
+        left: 45%;
+        color: #6C757D;
     }
+    
 }
 
 .list-container {
@@ -87,7 +55,7 @@
 
     }
 
-    .select-all {
+    .select {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -134,7 +102,7 @@
 
         .results {
 
-            margin-bottom: 25px;
+            margin-bottom: 10px;
 
             small {
                 color: #BEBEBE;
@@ -186,16 +154,14 @@
                 }
 
                 .label-img {
-                    height: 50px;
-                    width: 50px;
-                    background: #60B0B0;
-                    border-radius: 100px;
+                    
                     margin: 0 10px;
 
                     img {
-                        margin: 8px 0px 0px 1px;
-                        padding: 6px;
-
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 100px;
+                       
                     }
                 }
             }
@@ -440,6 +406,19 @@
         font-size:20px;
         font-weight: 500;
         font-family: $title-font;
+
+        iconify-icon {
+            margin-right: 8px;
+            margin-bottom: 1px;
+        }
+
+        &.confirm-title {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: var(--error-txt);
+        }
+        
     }
 
     .form-container {
@@ -447,6 +426,10 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
         grid-gap: 15px 15px;
+
+        .first-name.rt { //override for route
+            grid-column: span 3;
+        }
         
     }
 
@@ -466,6 +449,22 @@
     .modal-button {
         grid-column-start: 2;
         justify-self: end;
+        
+    }
+
+    .confirm-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 15px;
+
+        .add-driver {
+            background: var(--error-txt);
+            color: white;
+            text-align: center;
+        }
+        
         
     }
 }
@@ -608,6 +607,7 @@ input.accountphone {
     transition: .3s;
     border-style: none;
     width: 160px;
+    
 }
 
 .add-driver:hover {
@@ -617,10 +617,11 @@ input.accountphone {
 
 .cancel {
     margin: 0 15px;
-    color: #343A40;
+    color: #424a53;
 
     &:hover {
         color: #000;
+        cursor: pointer;
     }
 }
 

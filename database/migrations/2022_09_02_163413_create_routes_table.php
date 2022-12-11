@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('routes', function (Blueprint $table) {
-            $table->id('routeNo');
+            $table->id();
+            $table->string('routeNo', 6)->index();
             $table->string('routeTitle')->index();
             $table->string('origin');
             $table->string('destination');

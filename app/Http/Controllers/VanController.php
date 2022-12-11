@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VanController extends Controller
 {
@@ -22,17 +23,31 @@ class VanController extends Controller
     public function index(Request $rq)
     {
         $placeholder = 'Van';
-        $vans = Vehicle::all();
+        $vans = Vehicle::paginate(1)->withQueryString();
         $vhcl = Vehicle::find($rq->id);
+        $count = Vehicle::count();
+        $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
+
+        // dd($vans = $vhcl->routes()->get());
+
+        return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count', 'assigned'));
         
-        $assigned = Vehicle::find($rq->id)->assignedDriver()->get(); //gets the assigned driver of the current van
-        return view('van.index',compact('placeholder', 'vans', 'vhcl', 'assigned'));
+
+        if ($count > 1) {
+
+            $assigned = $vhcl->assignedDriver()->get(); //gets the assigned driver of the current van
+            return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count', 'assigned'));
+        }
+
+        else if ($count < 1) {
+            return view('van.index',compact('placeholder', 'vans', 'vhcl', 'count'));
+        }
     }
 
     public function store(Request $request)
     {
 
-        // For validation
+         // For validation
          $all = $request->validate([
             'plateNo' => 'required',
             'assignedDriver' => 'required',
@@ -44,12 +59,45 @@ class VanController extends Controller
             'amenities' => 'nullable',
             'seatCapacity' => 'required',
             'desc' => 'required',
+            'vanImages' => 'nullable',
             
         ]);
 
+        $vanImages = array();
 
-        $create = Vehicle::create($all);
+        if ($files = $request->file('vanImages')) {
+
+            foreach ($files as $file) {
+                $imageName = hash('md5', date('YmdHis')) . "." . $file->getClientOriginalExtension();
+                $destinationPath = Storage::path('public/images/'); 
+                // $imageUrl = $destinationPath.$imageName;
+                $file->move($destinationPath, $imageName);
+
+                $vanImages[] = "$imageName";
+            }
+        }
+
+        $create = Vehicle::insert( [
+            'vanImages'=>  implode("|", $vanImages),
+            'plateNo' => $all['plateNo'],
+            'assignedDriver' => $all['assignedDriver'],
+            'model' => $all['model'],
+            'rentalPrice' => $all['rentalPrice'],
+            'brand' => $all['brand'],
+            'color' => $all['color'],
+            'transmissionType' => $all['transmissionType'],
+            'amenities' => $all['amenities'],
+            'seatCapacity' => $all['seatCapacity'],
+            'desc' => $all['desc'],
+           
+        ]);
+
+        Vehicle::create($all);
         $latest = Vehicle::latest()->first();
+
+        // Vehicle::insert([
+        //     'vanImages' => implode('|', )
+        // ])
 
         if ($create) {
 
@@ -64,8 +112,56 @@ class VanController extends Controller
                 ->route('van')
                 ->session()->flash('error', 'Failed to add vehicle.');
         }
+                 
+    }
+
+    public function update(Request $rq)
+    {   
+    
+        // return redirect()->back();
+
+        $lastUpdated = Vehicle::orderBy('updated_at','DESC')->first();
+
+        $all = $rq->except('_token');
         
-                
+        $update = Vehicle::where('id', $rq->id)->update($all);
+
+
+        if ($update) {
+
+            return redirect()
+                ->route('van', ['id' => $lastUpdated])
+                ->with('success', 'Van updated successfully.');
+                // ->session()->flash('success', 'Driver added successfully.');
+        } 
+
+        else {
+
+            return redirect()
+                ->route('van', ['id' => $lastUpdated])
+                ->with('error', 'Van update failed.');
+           
+        }
+    }
+
+    
+    public function destroy(Request $rq) {
+
+        $deleted = Vehicle::destroy($rq->id);
+        $first = Vehicle::all()->first();
+
+        if ($deleted) {
+            
+            return redirect()
+                ->route('van', ['id' => $first->id])
+                // ->session()->flash('success', 'Driver added successfully.');
+                ->with('deleted', 'Van deleted.');
+        } 
+    
+        else {
+
+            return back()->with('error', 'Error');
+        }
     }
 
 }

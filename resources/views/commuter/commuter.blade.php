@@ -2,81 +2,20 @@
 
 @section('content')
 
+@if ($count == 0)
 
-<div class="list-container">
+    <x-no-record/>
+    
+@else
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search Commuter" id="search" autocomplete="off">
-        <iconify-icon icon="bi:filter-right" width="25" height="25"></iconify-icon>
-    </div>
+@livewire('search-list', ['comm' => $c, 'routeName' => Route::currentRouteName()])
 
-    <div class="select-all">
-
-        <div class="checkbox">
-            <input type="checkbox" name="" id="select">
-            <label for="select">Select all</label>
-        </div>
-
-        <span class="iconify" data-icon="charm:menu-kebab"></span>
-
-    </div>
-
-    <div class="list">
-
-        <div class="results">
-            <small>Showing results 1-{{ $count }} of {{ $count }}</small>
-        </div>
-
-
-        @foreach ($commuters as $commuter)
-
-        <a href="{{ route('commuter', ['id' => $commuter->comm_id]) }}"
-            class="list-info @if ( $commuter->comm_id == $c->comm_id ) active @endif">
-
-            <input type="checkbox" name="" id="{{ $commuter->comm_id }}">
-
-            <label for="{{ $commuter->comm_id }}">
-
-                <img class="lbl-img" src="{{ asset('assets/driver-pic.png') }}" width=50 height="50" alt="">
-
-                <div class="label-txt">
-                    <h4>{{$commuter->fname}} {{$commuter->lname}}</h4>
-                    <p>{{$commuter->email}}</p>
-                </div>
-
-            </label>
-
-        </a>
-
-        @endforeach
-
-        <div class="pagination">
-            <ul class="pagenum">
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-left" data-width="25" data-height="25"></span></a>
-                </li>
-                <li class="page-item num"><a href="">1</a></li>
-                <li class="page-item num"><a href="">2</a></li>
-                <li class="page-item num"><a href="">3</a></li>
-                <li class="page-item num"><a href="">4</a></li>
-                <li class="page-item num"><a href="">5</a></li>
-                <li class="page-item num"><a href="">6</a></li>
-                <li class="page-item arrow"><a href=""><span class="iconify"
-                            data-icon="ic:round-keyboard-double-arrow-right" data-width="25"
-                            data-height="25"></span></a></li>
-            </ul>
-        </div>
-
-    </div>
-
-
-</div>
 
 @include('layouts.profile')
 
 <div class="content-details comm">
 
-    {{-- view details --}}
+    <x-flash-message/>
 
     <div class="content-head">
 
@@ -84,8 +23,7 @@
 
         <div class="action">
 
-            <a onclick='Livewire.emit("openModal", "commuter.edit",  {{ json_encode($c) }})'><i
-                    class='bx bxs-edit'></i></a>
+            <a onclick='Livewire.emit("openModal", "commuter.edit",  {{ json_encode($c) }})'><i class='bx bxs-edit'></i></a>
 
         </div>
 
@@ -132,6 +70,8 @@
                         <small class="driver-txt">{{ $c->email }}</small>
                         {{-- <p class="driver-lbl">Birthdate</p>
                         <small class="driver-txt">{{ $c->birthdate }}</small> --}}
+                        <p class="driver-lbl">Auth Type</p>
+                        <small class="driver-txt">{{ $c->auth_type }} @empty($c->auth_type) email @endempty</small>
 
                     </div>
 
@@ -201,11 +141,11 @@
 
             </div>
 
-            <div class="add-btn">
+            {{-- <div class="add-btn">
                 <button class="btn">
                     <iconify-icon inline icon="akar-icons:plus" width="16" height="16"></iconify-icon>&nbsp; Add booking
                 </button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -250,6 +190,8 @@
 
 
 </div>
+    
+@endif
 
 
 @endsection

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use Illuminate\Support\Carbon;
 
 class TransactionController extends Controller
 {
@@ -18,10 +20,15 @@ class TransactionController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index(Request $rq)
     {   $placeholder = 'Transaction';
-        // $commuters = Commuter::all();
-        // return view('driver', compact('drivers'));
-        return view('transaction.index', compact('placeholder'));
+        $count = Transaction::count();
+
+        $transactions = Transaction::paginate(20)->withQueryString();
+        $transact = Transaction::find($rq->id);
+
+        $dateNow = Carbon::today()->toDateString();
+
+        return view('transaction.index', compact('placeholder', 'transactions', 'count', 'transact', 'dateNow'));
     }
 }

@@ -21,8 +21,8 @@ class Edit extends ModalComponent
 
     public function render()
     {
-        $driver_id = Driver::findOrFail($this->driver->dvr_id);
-        return view('livewire.driver.edit', compact('driver_id'));
+        // $driver_id = Driver::findOrFail($this->driver->dvr_id);
+        return view('livewire.driver.edit');
     }
 
 
