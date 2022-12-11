@@ -196,7 +196,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         // Add View Composer Provider
-        App\Providers\ViewServiceProvider::class
+        App\Providers\ViewServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
 
     ],
 
